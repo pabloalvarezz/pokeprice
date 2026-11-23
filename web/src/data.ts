@@ -7,7 +7,12 @@ export type Collection = {
   series: string | null;
   names: Partial<Record<Lang, string>>;
   date: string | null;
+  /** logo en español (o inglés si no hay) */
   logo: string | null;
+  /** logo en inglés (o español si no hay) */
+  logoEn: string | null;
+  /** foto oficial del sobre (sets japoneses, sobre todo) */
+  art: string | null;
   symbol: string | null;
   isNew: boolean;
   upcoming: boolean;
@@ -49,6 +54,10 @@ export type Offer = {
   h?: [string, number | null, number][];
   /** precio anómalo dentro de su grupo (muy por debajo de la mediana): no cuenta como "desde" */
   x?: boolean;
+  /** huella visual de la foto (16 hex dHash + 6 hex color) */
+  ih?: string;
+  /** foto que no se parece a las demás del grupo (probablemente de otro producto) */
+  io?: boolean;
 };
 
 export type Catalog = {
@@ -58,6 +67,8 @@ export type Catalog = {
   productTypes: { id: string; label: string; short: string }[];
   collections: Collection[];
   stores: Store[];
+  /** imágenes oficiales por "colección|gama": [url, huella] */
+  refs: Record<string, [string, string][]>;
 };
 
 export type Group = {
@@ -87,9 +98,13 @@ export type Data = {
   colById: Map<string, Collection>;
   storeById: Map<string, Store>;
   typeLabel: Map<string, string>;
+  /** imagen de respaldo por colección (para las que no tienen logo ni arte) */
+  colImage: Map<string, string>;
 };
 
-export const LANG_SHORT: Record<Lang, string> = { es: 'ES', en: 'EN', ja: 'JA', zh: 'ZH', ko: 'KO' };
+export const LANG_SHORT: Record<Lang, string> = { es: 'ES', en: 'EN', ja: 'JP', zh: 'CH', ko: 'KR' };
+export const LANG_FLAG: Record<Lang, string> = { es: '🇪🇸', en: '🇬🇧', ja: '🇯🇵', zh: '🇨🇳', ko: '🇰🇷' };
+export const LINE_LANGS: Record<string, string> = { intl: 'ES · EN', jp: 'JP · KR · CH', cn: 'CH' };
 export const LANG_NAME: Record<Lang, string> = { es: 'Español', en: 'Inglés', ja: 'Japonés', zh: 'Chino', ko: 'Coreano' };
 export const LINES_FOR_LANG: Record<Lang, string[]> = { es: ['intl'], en: ['intl'], ja: ['jp'], ko: ['jp'], zh: ['cn', 'jp'] };
 
@@ -126,7 +141,7 @@ export function collectionLocalName(c: Collection | null | undefined, lang: Lang
   return local && local !== main ? local : null;
 }
 
-const VARIANT_WORDS: Record<string, string> = { pc: 'Pokémon Center', lat: 'Edición latinoamericana', half: 'Media caja', enhanced: 'Enhanced', noshrink: 'Sin film', bulk: 'Sobres sueltos', ex: 'ex', gx: 'GX', v: 'V', vmax: 'VMAX', vstar: 'VSTAR', mega: 'Mega', 'tag team': 'TAG TEAM' };
+const VARIANT_WORDS: Record<string, string> = { pc: 'Pokémon Center', lat: 'Edición latinoamericana', half: 'Media caja', enhanced: 'Enhanced', noshrink: 'Sin film', bulk: 'Sobres sueltos', combo: 'Lote combinado', ex: 'ex', gx: 'GX', v: 'V', vmax: 'VMAX', vstar: 'VSTAR', mega: 'Mega', 'tag team': 'TAG TEAM' };
 export function variantLabel(v: string): string {
   if (!v) return '';
   const parts = v.split('+');
@@ -161,9 +176,53 @@ export function daysSince(d: string | null | undefined): number {
   return (Date.now() - new Date(d.length === 10 ? `${d}T12:00:00` : d).getTime()) / 864e5;
 }
 
+// ── Fotos: elegir la que mejor representa al grupo ────────────────────────
+function popcount(n: number): number {
+  n = n - ((n >>> 1) & 0x55555555);
+  n = (n & 0x33333333) + ((n >>> 2) & 0x33333333);
+  return (((n + (n >>> 4)) & 0x0f0f0f0f) * 0x01010101) >>> 24;
+}
+/** Distancia visual entre dos huellas: bits distintos de estructura + diferencia de color. */
+export function imageDistance(a: string, b: string): number {
+  const d = popcount(parseInt(a.slice(0, 8), 16) ^ parseInt(b.slice(0, 8), 16)) + popcount(parseInt(a.slice(8, 16), 16) ^ parseInt(b.slice(8, 16), 16));
+  const c = (i: number) => Math.abs(parseInt(a.slice(16 + i, 18 + i), 16) - parseInt(b.slice(16 + i, 18 + i), 16));
+  return d + (c(0) + c(2) + c(4)) / 24;
+}
+const FAR = 40; // por encima de esto, dos fotos casi seguro muestran productos distintos
+const MULTI_ART = new Set(['booster_pack', 'tin', 'special', 'case', 'other']); // varias ilustraciones legítimas por producto
+
+type RefMap = Record<string, [string, string][]>;
+
+/** Foto del grupo: la que más se parece al resto (y a la oficial, si la hay). Marca las que no encajan. */
+function pickImage(list: Offer[], ref: [string, string][] | undefined): string | null {
+  const cands = list.filter((o) => o.i && !o.x);
+  if (!cands.length) return list.find((o) => o.i)?.i ?? null;
+  const hashed = cands.filter((o) => o.ih);
+  const refs = ref ?? [];
+  if (!hashed.length) return refs[0]?.[0] ?? cands[0].i!;
+  const refDist = (o: Offer) => (refs.length ? Math.min(...refs.map(([, h]) => imageDistance(o.ih!, h))) : 0);
+  let best = hashed[0];
+  let bestScore = Infinity;
+  for (const o of hashed) {
+    let sum = 0;
+    for (const p of hashed) if (p !== o) sum += imageDistance(o.ih!, p.ih!);
+    const peers = hashed.length > 1 ? sum / (hashed.length - 1) : 0;
+    const score = peers + refDist(o) * (refs.length ? 1.2 : 0);
+    if (score < bestScore) {
+      bestScore = score;
+      best = o;
+    }
+  }
+  const ty = list[0]?.ty;
+  for (const o of hashed) o.io = hashed.length >= 3 && !MULTI_ART.has(ty) && imageDistance(o.ih!, best.ih!) > FAR ? true : undefined;
+  // Si ninguna foto de tienda se parece a la oficial, mejor la oficial
+  if (refs.length && refDist(best) > 34) return refs[0][0];
+  return best.i!;
+}
+
 const MULTI = new Set(['blister', 'tin', 'collection', 'premium', 'deck', 'special', 'case', 'other']);
 
-export function buildGroups(offers: Offer[], colById: Map<string, Collection>, typeLabel: Map<string, string>): Group[] {
+export function buildGroups(offers: Offer[], colById: Map<string, Collection>, typeLabel: Map<string, string>, refs: RefMap = {}): Group[] {
   const map = new Map<string, Offer[]>();
   for (const o of offers) {
     const loose = !o.col || (MULTI.has(o.ty) && !o.v);
@@ -210,7 +269,7 @@ export function buildGroups(offers: Offer[], colById: Map<string, Collection>, t
       offers: list,
       best,
       available: list.some((o) => o.a),
-      image: list.find((o) => o.i)?.i ?? null,
+      image: pickImage(list, best.col && !best.v && (col?.line === 'intl' ? best.l === 'en' : col?.line === 'jp' ? best.l === 'ja' : false) ? refs[`${best.col}|${best.ty}`] : undefined),
       storeCount: new Set(list.map((o) => o.s)).size,
       drop,
       dropPct,
@@ -240,8 +299,13 @@ export async function loadData(): Promise<Data> {
   const colById = new Map(catalog.collections.map((c) => [c.id, c]));
   const storeById = new Map(catalog.stores.map((s) => [s.id, s]));
   const typeLabel = new Map(catalog.productTypes.map((t) => [t.id, t.label]));
-  const groups = buildGroups(offers, colById, typeLabel);
-  return { catalog, offers, groups, colById, storeById, typeLabel };
+  catalog.refs ??= {};
+  const groups = buildGroups(offers, colById, typeLabel, catalog.refs);
+  // Imagen de respaldo para colecciones sin logo ni arte: la foto de su sobre o caja más vista
+  const colImage = new Map<string, string>();
+  const rank = ['booster_pack', 'booster_box', 'etb', 'booster_bundle'];
+  for (const t of rank) for (const g of [...groups].sort((a, b) => b.storeCount - a.storeCount)) if (g.col && g.ty === t && g.image && !colImage.has(g.col.id)) colImage.set(g.col.id, g.image);
+  return { catalog, offers, groups, colById, storeById, typeLabel, colImage };
 }
 
 export const FLAG: Record<string, string> = {
@@ -279,4 +343,32 @@ export function offersByOrigin(data: { offers: Offer[]; storeById: Map<string, S
     const r = regionOf(data.storeById.get(o.s)?.country);
     return origin === 'es' ? r === 'es' : r !== 'world';
   });
+}
+
+/** Visual de una colección según el idioma: logo (ES/EN), foto del sobre o imagen de respaldo. */
+export function collectionVisual(data: Pick<Data, 'colImage'>, c: Collection | null | undefined, lang: Lang | 'ui' = 'ui'): { logo?: string; art?: string } {
+  if (!c) return {};
+  if (c.line === 'intl') {
+    const logo = lang === 'en' ? (c.logoEn ?? c.logo) : (c.logo ?? c.logoEn);
+    if (logo) return { logo };
+  }
+  if (c.art) return { art: c.art };
+  const img = data.colImage.get(c.id);
+  return img ? { art: img } : {};
+}
+
+/** La misma imagen al tamaño justo cuando el CDN lo permite (Shopify, TCGplayer): menos datos. */
+export function sized(url: string | null | undefined, width: number): string | undefined {
+  if (!url) return undefined;
+  try {
+    const u = new URL(url);
+    if (u.host === 'cdn.shopify.com' || u.pathname.includes('/cdn/shop/')) {
+      u.searchParams.set('width', String(width));
+      return u.toString();
+    }
+    if (u.host === 'tcgplayer-cdn.tcgplayer.com') return url.replace(/_\d+w\.jpg$/, width <= 200 ? '_200w.jpg' : '_400w.jpg');
+  } catch {
+    /* ruta relativa (logos propios) */
+  }
+  return url;
 }

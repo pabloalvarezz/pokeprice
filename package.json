@@ -15,10 +15,12 @@
     "reclassify": "node --disable-warning=ExperimentalWarning scraper/reclassify.ts",
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "assets": "node --disable-warning=ExperimentalWarning scraper/assets.ts"
   },
   "dependencies": {
-    "cheerio": "^1.2.0"
+    "cheerio": "^1.2.0",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@types/node": "^24.19.2",

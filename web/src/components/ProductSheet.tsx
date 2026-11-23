@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { collectionLocalName, collectionName, fmtDate, FLAG, LANG_NAME, regionOf, shippingNote, type Data, type Group } from '../data.ts';
+import { collectionLocalName, collectionName, collectionVisual, sized, fmtDate, FLAG, LANG_NAME, regionOf, shippingNote, type Data, type Group } from '../data.ts';
 import { href, setParam, type Route } from '../router.ts';
 import { Delta, OfferPrice } from './ui.tsx';
 import { PriceChart } from './PriceChart.tsx';
@@ -22,13 +22,17 @@ export function ProductSheet({ data, group: g, route }: { data: Data; group: Gro
 
   return (
     <div className="scrim" onClick={close}>
-      <div className="sheet" role="dialog" aria-modal="true" aria-label={g.title} onClick={(e) => e.stopPropagation()}>
-        <button className="close" onClick={close} aria-label="Cerrar">
+      <div className="sheet glass" role="dialog" aria-modal="true" aria-label={g.title} onClick={(e) => e.stopPropagation()}>
+        <button className="close glass" onClick={close} aria-label="Cerrar">
           <svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 1l10 10M11 1 1 11" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" /></svg>
         </button>
         <div className="head">
-          <div className="media">{g.image ? <img src={g.image} alt="" referrerPolicy="no-referrer" /> : null}</div>
+          <div className="media">{g.image ? <img src={sized(g.image, 600)} alt="" referrerPolicy="no-referrer" /> : null}</div>
           <div>
+            {(() => {
+              const v = collectionVisual(data, g.col, g.l);
+              return v.logo ? <img className="collogo" src={v.logo} alt="" /> : null;
+            })()}
             <div className="eyebrow" style={{ fontSize: 14 }}>{type}</div>
             <h2>{g.title}</h2>
             {local && <div className="muted">{local}</div>}
@@ -58,6 +62,7 @@ export function ProductSheet({ data, group: g, route }: { data: Data; group: Gro
             const s = data.storeById.get(o.s);
             return (
               <div className="offer" key={o.id}>
+                <div className="thumb">{o.i ? <img src={sized(o.i, 120)} alt="" loading="lazy" referrerPolicy="no-referrer" /> : null}</div>
                 <div>
                   <div className="st">
                     <span className={`dot ${o.a ? '' : 'off'}`} />
@@ -65,6 +70,7 @@ export function ProductSheet({ data, group: g, route }: { data: Data; group: Gro
                   </div>
                   <div className="ti">{o.t}</div>
                   {o.x && <div className="tiny warn">Precio muy por debajo del resto: puede ser una reserva con señal o un error de la tienda.</div>}
+                  {o.io && !o.x && <div className="tiny warn">Su foto no se parece a las del resto de tiendas: comprueba que es el mismo producto.</div>}
                   {s && <div className={`tiny ${regionOf(s.country) === 'world' ? 'warn' : 'muted'}`}>{shippingNote(s.country)}</div>}
                 </div>
                 <div className="pr">

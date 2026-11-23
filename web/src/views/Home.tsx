@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { collectionName, daysSince, fmtDate, LANG_NAME, type Data, type Lang } from '../data.ts';
+import { collectionLocalName, collectionName, collectionVisual, daysSince, fmtDate, LANG_FLAG, LANG_NAME, LANG_SHORT, LINE_LANGS, type Data, type Lang } from '../data.ts';
 import { go, href, type Route } from '../router.ts';
 import { ProductCard, SearchIcon, SeeAll, isFirstDay } from '../components/ui.tsx';
 import { ChangeList, collectChanges } from './Changes.tsx';
@@ -12,57 +12,75 @@ export function Home({ data, route }: { data: Data; route: Route }) {
   const perLang = new Map<Lang, number>();
   for (const g of groups) perLang.set(g.l, (perLang.get(g.l) ?? 0) + 1);
 
-  // Colecciones recientes o por salir que ya tienen producto (o preventa)
   const withProduct = new Set(groups.map((g) => g.col?.id).filter(Boolean));
-  const recentCols = catalog.collections
-    .filter((c) => withProduct.has(c.id) && (c.date ?? '') >= new Date(Date.now() - 400 * 864e5).toISOString().slice(0, 10))
-    .slice(0, 14);
+  const yearAgo = new Date(Date.now() - 400 * 864e5).toISOString().slice(0, 10);
+  const recentCols = catalog.collections.filter((c) => withProduct.has(c.id) && (c.date ?? '') >= yearAgo);
+
+  // Cinta: logos internacionales y sobres japoneses recientes, intercalados
+  const intl = recentCols.filter((c) => c.line === 'intl' && collectionVisual(data, c, 'es').logo).slice(0, 12);
+  const asia = recentCols.filter((c) => c.line !== 'intl' && collectionVisual(data, c, 'ja').art).slice(0, 12);
+  const ribbon: typeof recentCols = [];
+  for (let i = 0; i < Math.max(intl.length, asia.length); i++) {
+    if (intl[i]) ribbon.push(intl[i]);
+    if (asia[i]) ribbon.push(asia[i]);
+  }
 
   const drops = collectChanges(data, 7).filter((c) => c.delta < 0).slice(0, 6);
   const firstDay = isFirstDay(data);
   const fresh = firstDay
-    ? [...groups].filter((g) => g.available && g.col).sort((a, b) => (b.col?.date ?? '').localeCompare(a.col?.date ?? '') || b.storeCount - a.storeCount).slice(0, 8)
+    ? [...groups].filter((g) => g.available && g.col && g.image).sort((a, b) => (b.col?.date ?? '').localeCompare(a.col?.date ?? '') || b.storeCount - a.storeCount).slice(0, 8)
     : [...groups].filter((g) => daysSince(g.firstSeen) <= 7).sort((a, b) => b.firstSeen.localeCompare(a.firstSeen)).slice(0, 8);
 
   return (
     <>
-      <section className="hero wrap">
-        <p className="eyebrow">Pokémon TCG · Envío a España</p>
-        <h1>Todos los precios. Un solo lugar.</h1>
-        <p className="lead">
-          Producto sellado en español, inglés, japonés, chino y coreano, comparado cada día en {activeStores} tiendas.
-        </p>
-        <form
-          className="search"
-          onSubmit={(e) => {
-            e.preventDefault();
-            go('explorar', { q: q.trim() || null });
-          }}
-        >
-          <SearchIcon size={20} />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Fuegos Fantasmales, Inferno X, ETB…" aria-label="Buscar" />
-        </form>
-        <div className="stats">
-          <div className="stat">
-            <b>{groups.length.toLocaleString('es-ES')}</b>
-            <span>productos</span>
-          </div>
-          <div className="stat">
-            <b>{offers.length.toLocaleString('es-ES')}</b>
-            <span>precios seguidos</span>
-          </div>
-          <div className="stat">
-            <b>{activeStores}</b>
-            <span>tiendas</span>
-          </div>
-          <div className="stat">
-            <b>{withProduct.size}</b>
-            <span>colecciones</span>
+      <section className="hero">
+        <div className="wrap">
+          <p className="eyebrow">Pokémon TCG · Envío a España</p>
+          <h1>
+            Todos los precios. <span className="grad">Un solo lugar.</span>
+          </h1>
+          <p className="lead">Producto sellado en español, inglés, japonés, chino y coreano, comparado cada día en {activeStores} tiendas.</p>
+          <form
+            className="search glass"
+            onSubmit={(e) => {
+              e.preventDefault();
+              go('explorar', { q: q.trim() || null });
+            }}
+          >
+            <SearchIcon size={20} />
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Fuegos Fantasmales, Inferno X, ETB…" aria-label="Buscar" />
+          </form>
+          <div className="stats glass thin">
+            {[
+              [groups.length, 'productos'],
+              [offers.length, 'precios seguidos'],
+              [activeStores, 'tiendas'],
+              [withProduct.size, 'colecciones'],
+            ].map(([n, label]) => (
+              <div className="stat" key={label}>
+                <b>{Number(n).toLocaleString('es-ES')}</b>
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
         </div>
+        {ribbon.length > 3 && (
+          <div className="marquee" aria-label="Colecciones recientes">
+            <div className="track">
+              {[...ribbon, ...ribbon].map((c, i) => {
+                const v = collectionVisual(data, c, c.line === 'intl' ? 'es' : 'ja');
+                return (
+                  <a key={`${c.id}-${i}`} className="glass" href={href('explorar', { col: c.id })} title={collectionName(c)} aria-hidden={i >= ribbon.length}>
+                    {v.logo ? <img src={v.logo} alt={collectionName(c)} /> : <img className="art" src={v.art} alt={collectionName(c)} referrerPolicy="no-referrer" />}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </section>
 
-      <section className="band alt">
+      <section className="band">
         <div className="wrap">
           <div className="section-head">
             <h2>Por idioma.</h2>
@@ -70,8 +88,9 @@ export function Home({ data, route }: { data: Data; route: Route }) {
           </div>
           <div className="lang-tiles">
             {catalog.languages.map((l) => (
-              <a key={l.id} className="lang-tile" href={href('explorar', { l: l.id })}>
-                <div className="code">{l.id.toUpperCase()}</div>
+              <a key={l.id} className="lang-tile glass" href={href('explorar', { l: l.id })}>
+                <div className="flag">{LANG_FLAG[l.id]}</div>
+                <div className="code">{LANG_SHORT[l.id]}</div>
                 <div className="name">{LANG_NAME[l.id]}</div>
                 <div className="count">{(perLang.get(l.id) ?? 0).toLocaleString('es-ES')} productos</div>
               </a>
@@ -85,20 +104,31 @@ export function Home({ data, route }: { data: Data; route: Route }) {
           <div className="wrap">
             <div className="section-head">
               <h2>Colecciones recientes.</h2>
-              <SeeAll to="cobertura">Todas</SeeAll>
+              <SeeAll to="colecciones">Todas las colecciones</SeeAll>
             </div>
-            <div className="rail">
-              {recentCols.map((c) => {
+            <div className="col-grid" style={{ paddingBottom: 0 }}>
+              {recentCols.slice(0, 8).map((c) => {
                 const lang: Lang = c.line === 'intl' ? 'es' : c.line === 'jp' ? 'ja' : 'zh';
+                const v = collectionVisual(data, c, lang);
                 const n = groups.filter((g) => g.col?.id === c.id).length;
+                const local = collectionLocalName(c, lang);
                 return (
-                  <a key={c.id} className="col-card" href={href('explorar', { col: c.id })}>
-                    <div className="logo">{c.logo ? <img src={c.logo} alt="" loading="lazy" /> : <span className="code">{c.code}</span>}</div>
-                    <div className="nm">{collectionName(c, lang)}</div>
-                    <div className="meta">
-                      {c.line === 'intl' ? 'ES · EN' : c.line === 'jp' ? 'JA · KO · ZH' : 'ZH'} · {n} {n === 1 ? 'producto' : 'productos'}
-                      <br />
-                      {c.upcoming ? `Sale el ${fmtDate(c.date)}` : fmtDate(c.date)}
+                  <a key={c.id} className="col-tile glass" href={href('explorar', { col: c.id })}>
+                    <div className="visual">
+                      {v.art && <div className="bgart" style={{ backgroundImage: `url("${v.art}")` }} />}
+                      {v.logo && <div className="bgart" style={{ backgroundImage: `url("${v.logo}")`, opacity: 0.35 }} />}
+                      {v.logo ? <img className="logo" src={v.logo} alt="" loading="lazy" /> : v.art ? <img className="art" src={v.art} alt="" loading="lazy" referrerPolicy="no-referrer" /> : <span className="code">{c.code}</span>}
+                      {c.upcoming && <span className="badge new tag">Próximamente</span>}
+                    </div>
+                    <div className="info">
+                      <span className="nm">{collectionName(c, lang)}</span>
+                      {local && <span className="local">{local}</span>}
+                      <div className="meta">
+                        <span>{LINE_LANGS[c.line]}</span>
+                        <span>
+                          {n} prod. · {c.upcoming ? `sale ${fmtDate(c.date, { day: 'numeric', month: 'short' })}` : fmtDate(c.date, { month: 'short', year: 'numeric' })}
+                        </span>
+                      </div>
                     </div>
                   </a>
                 );
@@ -109,7 +139,7 @@ export function Home({ data, route }: { data: Data; route: Route }) {
       )}
 
       {drops.length > 0 && (
-        <section className="band alt">
+        <section className="band">
           <div className="wrap">
             <div className="section-head">
               <h2>Bajadas de precio.</h2>

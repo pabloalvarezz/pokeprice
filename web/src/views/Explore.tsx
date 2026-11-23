@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { buildGroups, collectionName, LANG_NAME, LINES_FOR_LANG, norm, offersByOrigin, type Data, type Group, type Lang } from '../data.ts';
+import { buildGroups, collectionLocalName, collectionName, collectionVisual, COLUMNS_FOR_LANG, fmtDate, fmtEur, LANG_NAME, LANG_SHORT, LINES_FOR_LANG, norm, offersByOrigin, type Data, type Group, type Lang } from '../data.ts';
 import { setParam, type Route } from '../router.ts';
 import { ProductCard, SearchIcon, Segmented } from '../components/ui.tsx';
 
@@ -37,7 +37,7 @@ export function Explore({ data, route }: { data: Data; route: Route }) {
   };
   const origin = p.get('o');
   const baseGroups = useMemo(
-    () => (origin === 'es' || origin === 'eu' ? buildGroups(offersByOrigin(data, origin), data.colById, data.typeLabel) : data.groups),
+    () => (origin === 'es' || origin === 'eu' ? buildGroups(offersByOrigin(data, origin), data.colById, data.typeLabel, data.catalog.refs) : data.groups),
     [data, origin],
   );
   const tokens = norm(q).split(' ').filter(Boolean);
@@ -74,11 +74,12 @@ export function Explore({ data, route }: { data: Data; route: Route }) {
   }
   const storesWith = data.catalog.stores.filter((s) => searched.some((g) => pass(g, 's') && g.offers.some((o) => o.s === s.id)));
 
+  const selCol = col !== 'all' && col !== 'none' ? (data.colById.get(col) ?? null) : null;
   const active = [l !== 'all', ty !== 'all', col !== 'all', store !== 'all', stock, !!q, !!origin].filter(Boolean).length;
 
   return (
     <>
-      <div className="wrap page-title">
+      <div className="wrap page-title" style={selCol ? { display: 'none' } : undefined}>
         <h1>Explorar</h1>
         <p>
           {l === 'all' ? 'Todo el producto sellado' : `Producto en ${LANG_NAME[l].toLowerCase()}`}, agrupado por colección, gama e idioma, con el precio más bajo
@@ -86,15 +87,18 @@ export function Explore({ data, route }: { data: Data; route: Route }) {
         </p>
       </div>
 
+      {selCol && <CollectionHero data={data} route={route} col={selCol} lang={l} groups={searched.filter((g) => pass(g, 'ty'))} ty={ty} />}
+
       <div className="filters">
         <div className="wrap">
+          <div className="panel glass">
           <div className="row">
             <Segmented
               value={l}
-              onChange={(v) => setParam(route, { l: v === 'all' ? null : v, col: null })}
-              options={[{ id: 'all', label: 'Todos' }, ...langs.map((x) => ({ id: x.id, label: x.id.toUpperCase() }))] as { id: Lang | 'all'; label: string }[]}
+              onChange={(v) => setParam(route, { l: v === 'all' ? null : v, col: selCol && v !== 'all' && !LINES_FOR_LANG[v as Lang].includes(selCol.line) ? null : col === 'all' ? null : col })}
+              options={[{ id: 'all', label: 'Todos' }, ...langs.map((x) => ({ id: x.id, label: LANG_SHORT[x.id] }))] as { id: Lang | 'all'; label: string }[]}
             />
-            <div className="search compact grow">
+            <div className="search compact grow glass">
               <SearchIcon size={15} />
               <input
                 value={q}
@@ -128,14 +132,14 @@ export function Explore({ data, route }: { data: Data; route: Route }) {
           </div>
           <div className="row">
             <div className="chips grow">
-              <button className={`chip ${ty === 'all' ? 'on' : ''}`} onClick={() => set('ty', 'all')}>
+              <button className={`chip glass ${ty === 'all' ? 'on' : ''}`} onClick={() => set('ty', 'all')}>
                 Todas las gamas
               </button>
               {data.catalog.productTypes.map((t) => {
                 const n = count('ty', (g) => g.ty === t.id);
                 if (!n && ty !== t.id) return null;
                 return (
-                  <button key={t.id} className={`chip ${ty === t.id ? 'on' : ''}`} onClick={() => set('ty', ty === t.id ? 'all' : t.id)}>
+                  <button key={t.id} className={`chip glass ${ty === t.id ? 'on' : ''}`} onClick={() => set('ty', ty === t.id ? 'all' : t.id)}>
                     {t.label}
                     <span className="n">{n}</span>
                   </button>
@@ -162,6 +166,7 @@ export function Explore({ data, route }: { data: Data; route: Route }) {
                 </option>
               ))}
             </select>
+          </div>
           </div>
         </div>
       </div>
@@ -199,5 +204,62 @@ export function Explore({ data, route }: { data: Data; route: Route }) {
         )}
       </div>
     </>
+  );
+}
+
+/** Cabecera visual de una colección: logo o sobre, nombres, fecha y el "desde" de cada gama. */
+function CollectionHero({ data, route, col, lang, groups, ty }: { data: Data; route: Route; col: NonNullable<Group['col']>; lang: Lang | 'all'; groups: Group[]; ty: string }) {
+  const viewLang: Lang = lang !== 'all' ? lang : col.line === 'intl' ? 'es' : col.line === 'jp' ? 'ja' : 'zh';
+  const v = collectionVisual(data, col, viewLang);
+  const local = collectionLocalName(col, viewLang);
+  const types = COLUMNS_FOR_LANG[viewLang];
+  const label = new Map(data.catalog.productTypes.map((t) => [t.id, t.label]));
+  const inCol = groups.filter((g) => g.col?.id === col.id);
+  const minFor = (t: string) => {
+    const gs = inCol.filter((g) => g.ty === t && (lang === 'all' || g.l === lang));
+    const std = gs.filter((g) => !g.v);
+    const pick = (std.length ? std : gs).filter((g) => g.available);
+    return { n: gs.length, from: pick.length ? Math.min(...pick.map((g) => g.best.p)) : null };
+  };
+  return (
+    <div className="wrap">
+      <div className="col-hero glass">
+        <div className="visual">
+          {v.art && <div className="bgart" style={{ backgroundImage: `url("${v.art}")` }} />}
+          {v.logo && <div className="bgart" style={{ backgroundImage: `url("${v.logo}")`, opacity: 0.35 }} />}
+          {v.logo ? <img className="logo" src={v.logo} alt="" /> : v.art ? <img className="art" src={v.art} alt="" referrerPolicy="no-referrer" /> : <span className="code">{col.code}</span>}
+        </div>
+        <div>
+          <div className="eyebrow" style={{ fontSize: 14, margin: 0 }}>
+            {col.series ?? 'Colección'}
+            {col.code ? ` · ${col.code}` : ''}
+          </div>
+          <h2>{collectionName(col, viewLang)}</h2>
+          <div className="sub">
+            {local ? `${local} · ` : ''}
+            {col.upcoming ? `Sale el ${fmtDate(col.date)}` : col.date ? `Salió el ${fmtDate(col.date)}` : ''}
+            {' · '}
+            {inCol.length} productos
+          </div>
+          <div className="type-tiles">
+            {types.map((t) => {
+              const m = minFor(t);
+              const on = ty === t;
+              return m.n ? (
+                <button key={t} className={`type-tile glass ${on ? 'on' : ''}`} onClick={() => setParam(route, { ty: on ? null : t })}>
+                  <span className="t">{label.get(t)}</span>
+                  <span className="p">{m.from != null ? fmtEur(m.from) : 'Agotado'}</span>
+                </button>
+              ) : (
+                <div key={t} className="type-tile glass thin missing" title="Ninguna tienda lo tiene ahora mismo">
+                  <span className="t">{label.get(t)}</span>
+                  <span className="p">Falta</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -3,6 +3,7 @@ import { openDb, nowIso } from './lib/db.ts';
 import { syncCollections } from './sync-collections.ts';
 import { scrapeAll } from './scrape.ts';
 import { exportData } from './export.ts';
+import { hashOfferImages, syncCollectionAssets } from './assets.ts';
 
 const db = openDb();
 const started = nowIso();
@@ -14,7 +15,17 @@ try {
 } catch (e) {
   log(`Aviso: sincronización de colecciones fallida (${(e as Error).message}); sigo con las conocidas.`);
 }
+try {
+  await syncCollectionAssets(db, log);
+} catch (e) {
+  log(`Aviso: logos e imágenes de colección no actualizados (${(e as Error).message})`);
+}
 const results = await scrapeAll(db, [], log);
+try {
+  await hashOfferImages(db, log);
+} catch (e) {
+  log(`Aviso: huellas de imagen no actualizadas (${(e as Error).message})`);
+}
 const ok = results.filter((r) => r.status === 'ok');
 const stats = {
   collections,

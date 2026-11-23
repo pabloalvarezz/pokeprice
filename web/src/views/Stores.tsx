@@ -42,7 +42,7 @@ export function Stores({ data }: { data: Data }) {
         <Segmented
           value={lang}
           onChange={setLang}
-          options={[{ id: 'all', label: 'Todos' }, ...data.catalog.languages.map((l) => ({ id: l.id, label: l.id.toUpperCase() }))] as { id: Lang | 'all'; label: string }[]}
+          options={[{ id: 'all', label: 'Todos' }, ...data.catalog.languages.map((l) => ({ id: l.id, label: LANG_SHORT[l.id] }))] as { id: Lang | 'all'; label: string }[]}
         />
       </div>
       <div className="wrap">
@@ -51,11 +51,24 @@ export function Stores({ data }: { data: Data }) {
             const langs = [...(perStoreLang.get(s.id) ?? [])] as Lang[];
             const ok = s.status === 'ok';
             return (
-              <div className="store" key={s.id}>
+              <div className="store glass" key={s.id}>
                 <div className="top">
-                  <span className="flag">{FLAG[s.country] ?? '🌐'}</span>
+                  <span className="fav">
+                    <img
+                      src={`${s.url.replace(/\/$/, '')}/favicon.ico`}
+                      alt=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        const el = e.currentTarget.parentElement!;
+                        el.textContent = FLAG[s.country] ?? '🌐';
+                      }}
+                    />
+                  </span>
                   <div style={{ flex: 1 }}>
-                    <div className="nm">{s.name}</div>
+                    <div className="nm">
+                      {s.name} <span style={{ fontWeight: 400 }}>{FLAG[s.country] ?? ''}</span>
+                    </div>
                     <a className="small" href={s.url} target="_blank" rel="noopener noreferrer nofollow">
                       {s.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
                     </a>

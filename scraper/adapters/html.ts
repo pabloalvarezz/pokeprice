@@ -79,6 +79,19 @@ const KNOWN: { name: string; test: string; sel: NonNullable<import('./types.ts')
   },
 ];
 
+/** Imagen real aunque la tienda use carga diferida (src = marcador "data:" y la URL en otro atributo). */
+function lazyImage($img: cheerio.Cheerio<any>): string | undefined {
+  for (const a of ['data-src', 'data-lazy-src', 'data-original', 'data-lazy', 'data-full-size-image-url', 'src']) {
+    const v = $img.attr(a);
+    if (v && !v.startsWith('data:')) return v;
+  }
+  for (const a of ['data-srcset', 'srcset', 'data-lazy-srcset']) {
+    const v = $img.attr(a)?.split(',')[0]?.trim().split(/\s+/)[0];
+    if (v && !v.startsWith('data:')) return v;
+  }
+  return undefined;
+}
+
 type Sel = NonNullable<import('./types.ts').StoreConfig['selectors']>;
 
 /** Precio de venta: atributo si se indica; si no, el texto sin el precio tachado (del/s/old-price). */
@@ -121,7 +134,7 @@ export const html: Adapter = async (store, log) => {
             externalId: href ?? title,
             title,
             url: absUrl(href, url!) ?? url!,
-            image: absUrl($img.attr('data-src') ?? $img.attr('src'), url!),
+            image: absUrl(lazyImage($img), url!),
             price: readPrice($, $el, sel),
             meta: sel.meta ? $el.find(sel.meta).map((_, m) => `${$(m).text()} ${$(m).attr('alt') ?? ''} ${$(m).attr('title') ?? ''}`).get().join(' ').trim() : undefined,
             currency,

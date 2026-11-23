@@ -201,6 +201,7 @@ export class Classifier {
     );
     const best = pool[0];
 
+    if (!language && hits.some((h) => h.lang === 'other') && !hits.some((h) => h.lang === 'es' || h.lang === 'en')) language = 'other';
     if (!language && best) {
       if (best.lang === 'jpline') language = 'ja';
       else if (best.lang) language = best.lang;
@@ -233,13 +234,13 @@ export class Classifier {
 
     if (language === 'other') return { ...this.out('otro idioma'), collectionId, productType, language };
 
-    return {
-      excluded: null,
-      collectionId,
-      productType,
-      language,
-      variantKey: this.variantKey(n, productType),
-    };
+    let variantKey = this.variantKey(n, productType);
+    // Combos de tienda ("ETB + Bundle", "ETB + Pokéball"): no se mezclan con el producto suelto
+    const SINGLE = ['etb', 'booster_box', 'booster_bundle', 'booster_pack', 'build_battle'];
+    if (SINGLE.includes(productType) && /\+\s*(\d+\s*)?(etb|elite|bundle|booster box|display|caja|blister|tin|lata|poke ?ball|pokeball|coleccion|collection|binder|sleeves|fundas)|\bcombo\b|\bpack exclusivo\b/.test(lower)) {
+      variantKey = variantKey ? `${variantKey}+combo` : 'combo';
+    }
+    return { excluded: null, collectionId, productType, language, variantKey };
   }
 
   hasPokemonName(n: string): boolean {
@@ -256,8 +257,8 @@ export class Classifier {
     const parts: string[] = [];
     if (/pokemon center|pokemoncenter/.test(n)) parts.push('pc');
     if (/\b(lat|latam|latino|latina|latin american|latinoamerica|latinoamericano|latinoamericana|mexico|mx)\b/.test(n)) parts.push('lat');
-    const qty = n.match(/\b(\d{1,3}) ?x\b|\bx ?(\d{1,3})\b|\b(\d{1,3}) (sobres|booster packs|packs|boosters)\b|\blote de (\d{1,3})\b/);
-    const q = qty ? Number(qty[1] ?? qty[2] ?? qty[3] ?? qty[5]) : 1;
+    const qty = n.match(/\b(\d{1,3}) ?x\b|\bx ?(\d{1,3})\b|\b(\d{1,3}) (sobres|booster packs|packs|boosters)\b|\blote de (\d{1,3})\b|\b(\d{1,3}) ?ct\b|\bpack de (\d{1,3})\b|\b(\d{1,3}) ?(unds?|uds|unidades|pcs|stuck)\b/);
+    const q = qty ? Number(qty[1] ?? qty[2] ?? qty[3] ?? qty[5] ?? qty[6] ?? qty[7] ?? qty[8]) : 1;
     if (type === 'booster_pack' && q > 1) parts.push(`x${q}`);
     if (type === 'booster_box' && /\bhalf|media|18 (sobres|packs|boosters)\b/.test(n)) parts.push('half');
     if (type === 'booster_box' && /\benhanced\b/.test(n)) parts.push('enhanced');

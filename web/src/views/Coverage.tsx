@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { buildGroups, collectionLocalName, collectionName, COLUMNS_FOR_LANG, fmtDate, fmtEur, LANG_NAME, LINES_FOR_LANG, offersByOrigin, type Collection, type Data, type Group, type Lang } from '../data.ts';
-import { go, setParam, type Route } from '../router.ts';
+import { buildGroups, collectionLocalName, collectionName, collectionVisual, COLUMNS_FOR_LANG, fmtDate, fmtEur, LANG_NAME, LANG_SHORT, LINES_FOR_LANG, offersByOrigin, type Collection, type Data, type Group, type Lang } from '../data.ts';
+import { go, href, setParam, type Route } from '../router.ts';
 import { Segmented } from '../components/ui.tsx';
 
 type Cell = { min: number | null; minAny: number; stores: Set<string>; products: number };
@@ -14,7 +14,7 @@ export function Coverage({ data, route }: { data: Data; route: Route }) {
   const cols = COLUMNS_FOR_LANG[lang];
 
   const { matrix, rows, seriesList, loose } = useMemo(() => {
-    const groups = origin === 'es' || origin === 'eu' ? buildGroups(offersByOrigin(data, origin), data.colById, data.typeLabel) : data.groups;
+    const groups = origin === 'es' || origin === 'eu' ? buildGroups(offersByOrigin(data, origin), data.colById, data.typeLabel, data.catalog.refs) : data.groups;
     // En cada celda manda la variante estándar (sin "media caja", "Pokémon Center", lotes…) si existe
     const standard = new Set(groups.filter((g) => g.l === lang && g.col && !g.v).map((g) => `${g.col!.id}|${g.ty}`));
     const matrix = new Map<string, Cell>();
@@ -73,7 +73,7 @@ export function Coverage({ data, route }: { data: Data; route: Route }) {
           <Segmented
             value={lang}
             onChange={(v) => setParam(route, { l: v === 'es' ? null : v, serie: null })}
-            options={data.catalog.languages.map((l) => ({ id: l.id, label: LANG_NAME[l.id] }))}
+            options={data.catalog.languages.map((l) => ({ id: l.id, label: `${LANG_SHORT[l.id]} · ${LANG_NAME[l.id]}` }))}
           />
           <select className="select" value={series} onChange={(e) => setParam(route, { serie: e.target.value === 'all' ? null : e.target.value })} aria-label="Serie">
             <option value="all">Todas las series</option>
@@ -108,7 +108,7 @@ export function Coverage({ data, route }: { data: Data; route: Route }) {
           </span>
         </div>
 
-        <div className="matrix-wrap">
+        <div className="matrix-wrap glass">
           <table className="matrix">
             <thead>
               <tr>
@@ -133,12 +133,22 @@ export function Coverage({ data, route }: { data: Data; route: Route }) {
                   header,
                   <tr key={c.id}>
                     <th>
-                      {c.code && <span className="code">{c.code}</span>}
-                      {collectionName(c, lang)}
-                      <span className="date">
-                        {local ? `${local} · ` : ''}
-                        {c.upcoming ? `Sale el ${fmtDate(c.date)}` : fmtDate(c.date, { month: 'short', year: 'numeric' })}
-                      </span>
+                      <a className="rowhead" href={href('explorar', { col: c.id, l: lang })} style={{ color: 'inherit' }}>
+                        <span className="mini">
+                          {(() => {
+                            const v = collectionVisual(data, c, lang);
+                            return v.logo ? <img src={v.logo} alt="" loading="lazy" /> : v.art ? <img className="art" src={v.art} alt="" loading="lazy" referrerPolicy="no-referrer" /> : <span>{c.code}</span>;
+                          })()}
+                        </span>
+                        <span>
+                          {c.code && <span className="code">{c.code}</span>}
+                          {collectionName(c, lang)}
+                          <span className="date">
+                            {local ? `${local} · ` : ''}
+                            {c.upcoming ? `Sale el ${fmtDate(c.date)}` : fmtDate(c.date, { month: 'short', year: 'numeric' })}
+                          </span>
+                        </span>
+                      </a>
                     </th>
                     {cols.map((t) => (
                       <td key={t}>{renderCell(matrix.get(`${c.id}|${t}`), () => open({ col: c.id, ty: t }))}</td>

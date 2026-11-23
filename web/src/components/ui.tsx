@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
-import { daysSince, fmtEur, fmtMoney, FLAG, LANG_SHORT, type Data, type Group, type Offer } from '../data.ts';
+import { collectionVisual, daysSince, fmtEur, fmtMoney, FLAG, LANG_SHORT, sized, type Data, type Group, type Offer } from '../data.ts';
 import { href, setParam, type Route } from '../router.ts';
 
 export function Segmented<T extends string>({ value, options, onChange }: { value: T; options: { id: T; label: ReactNode }[]; onChange: (v: T) => void }) {
   return (
-    <div className="segmented" role="tablist">
+    <div className="segmented glass" role="tablist">
       {options.map((o) => (
         <button key={o.id} role="tab" aria-selected={o.id === value} className={o.id === value ? 'on' : ''} onClick={() => onChange(o.id)}>
           {o.label}
@@ -51,11 +51,20 @@ export function openGroup(route: Route, key: string) {
   setParam(route, { g: key }, { push: true });
 }
 
+/** Logo o foto del sobre de una colección; si no hay nada, su código. */
+export function CollectionMark({ data, col, lang, className }: { data: Data; col: Group['col']; lang: Group['l'] | 'ui'; className?: string }) {
+  const v = collectionVisual(data, col, lang);
+  if (v.logo) return <img className={`logo ${className ?? ''}`} src={v.logo} alt="" loading="lazy" />;
+  if (v.art) return <img className={`art ${className ?? ''}`} src={v.art} alt="" loading="lazy" referrerPolicy="no-referrer" />;
+  return col?.code ? <span className="code">{col.code}</span> : null;
+}
+
 export function ProductCard({ g, data, route }: { g: Group; data: Data; route: Route }) {
   const isNew = daysSince(g.firstSeen) <= 3 && !isFirstDay(data);
   const store = data.storeById.get(g.best.s);
+  const v = collectionVisual(data, g.col, g.l);
   return (
-    <button className="card fade-in" onClick={() => openGroup(route, g.key)}>
+    <button className="card glass fade-in" onClick={() => openGroup(route, g.key)}>
       <div className="media">
         <div className="badges">
           <span className="badge lang">{LANG_SHORT[g.l]}</span>
@@ -67,10 +76,17 @@ export function ProductCard({ g, data, route }: { g: Group; data: Data; route: R
             <span className="badge new">Nuevo</span>
           ) : null}
         </div>
-        {g.image ? <img src={g.image} alt="" loading="lazy" referrerPolicy="no-referrer" /> : <span className="ph">{g.col?.code ?? '·'}</span>}
+        {g.image ? (
+          <img className="photo" src={sized(g.image, 480)} alt="" loading="lazy" referrerPolicy="no-referrer" />
+        ) : (
+          <div className="ph">{v.logo ? <img src={v.logo} alt="" /> : <span>{g.col?.code ?? '·'}</span>}</div>
+        )}
       </div>
       <div className="body">
-        <span className="kind">{g.subtitle}</span>
+        <span className="kind">
+          {v.logo && <img src={v.logo} alt="" loading="lazy" />}
+          {g.subtitle}
+        </span>
         <span className="title">{g.title}</span>
         <div className="foot">
           <span className="price">

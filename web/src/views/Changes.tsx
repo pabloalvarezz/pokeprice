@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { daysSince, fmtDate, fmtEur, FLAG, LANG_SHORT, type Data, type Group, type Offer } from '../data.ts';
+import { daysSince, sized, fmtDate, fmtEur, FLAG, LANG_SHORT, type Data, type Group, type Offer } from '../data.ts';
 import { setParam, type Route } from '../router.ts';
 import { Delta, Segmented, openGroup } from '../components/ui.tsx';
 
@@ -20,12 +20,12 @@ export function collectChanges(data: Data, days: number): Change[] {
 
 export function ChangeList({ data, route, items }: { data: Data; route: Route; items: Change[] }) {
   return (
-    <div className="list">
+    <div className="list glass">
       {items.map(({ offer: o, group: g }) => {
         const s = data.storeById.get(o.s);
         return (
           <div className="list-row" key={o.id} onClick={() => openGroup(route, g.key)}>
-            <div className="thumb">{o.i ? <img src={o.i} alt="" loading="lazy" referrerPolicy="no-referrer" /> : null}</div>
+            <div className="thumb">{o.i ? <img src={sized(o.i, 120)} alt="" loading="lazy" referrerPolicy="no-referrer" /> : null}</div>
             <div>
               <div className="t">
                 {g.title} <span className="muted small">· {data.typeLabel.get(g.ty)} · {LANG_SHORT[g.l]}</span>
@@ -98,12 +98,12 @@ export function Changes({ data, route }: { data: Data; route: Route }) {
               <p>{firstDay ? 'Hoy es el primer día de seguimiento: los productos nuevos aparecerán aquí a partir de mañana.' : 'No ha entrado producto nuevo en este periodo.'}</p>
             </div>
           ) : (
-            <div className="list">
+            <div className="list glass">
               {newOffers.slice(0, 300).map(({ o, g }) => {
                 const s = data.storeById.get(o.s);
                 return (
                   <div className="list-row" key={o.id} onClick={() => openGroup(route, g.key)}>
-                    <div className="thumb">{o.i ? <img src={o.i} alt="" loading="lazy" referrerPolicy="no-referrer" /> : null}</div>
+                    <div className="thumb">{o.i ? <img src={sized(o.i, 120)} alt="" loading="lazy" referrerPolicy="no-referrer" /> : null}</div>
                     <div>
                       <div className="t">
                         {g.title} <span className="muted small">· {data.typeLabel.get(g.ty)} · {LANG_SHORT[g.l]}</span>

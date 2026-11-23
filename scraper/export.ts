@@ -1,6 +1,6 @@
 // Exporta la base de datos a JSON estático para la web (web/public/data).
 import type { DatabaseSync } from 'node:sqlite';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { openDb, ROOT, today } from './lib/db.ts';
 import { LANG_LABEL, LANGS, PRODUCT_TYPES } from './classify/taxonomy.ts';
@@ -10,6 +10,24 @@ const OUT = resolve(ROOT, 'web', 'public', 'data');
 export function exportData(db: DatabaseSync, log = console.log) {
   mkdirSync(OUT, { recursive: true });
   const t = today();
+
+  // Recursos visuales (logos y arte) como ficheros WebP junto a la web
+  const IMG = resolve(ROOT, 'web', 'public', 'img');
+  rmSync(IMG, { recursive: true, force: true });
+  mkdirSync(IMG, { recursive: true });
+  const assetPath = new Map<string, string>();
+  for (const a of db.prepare('SELECT key, data FROM assets WHERE data IS NOT NULL AND (key LIKE \'logo:%\' OR key LIKE \'art:%\')').all() as { key: string; data: Uint8Array }[]) {
+    const file = `${a.key.replace(/[^a-z0-9]+/gi, '-')}.webp`;
+    writeFileSync(resolve(IMG, file), a.data);
+    assetPath.set(a.key, `img/${file}`);
+  }
+
+  // Imágenes oficiales de referencia por colección y gama: [url, huella]
+  const refs: Record<string, [string, string][]> = {};
+  for (const r of db.prepare('SELECT collection_id, product_type, image, hash FROM refs WHERE hash IS NOT NULL').all() as any[]) {
+    (refs[`${r.collection_id}|${r.product_type}`] ??= []).push([r.image, r.hash]);
+  }
+  const hashes = new Map((db.prepare('SELECT url, hash FROM image_hash WHERE hash IS NOT NULL').all() as { url: string; hash: string }[]).map((h) => [h.url, h.hash]));
   const daysAgo = (n: number) => new Date(Date.now() - n * 864e5).toISOString().slice(0, 10);
 
   const collections = (db.prepare('SELECT * FROM collections ORDER BY release_date DESC').all() as any[]).map((c) => ({
@@ -19,7 +37,9 @@ export function exportData(db: DatabaseSync, log = console.log) {
     series: c.series,
     names: Object.fromEntries(Object.entries({ en: c.name_en, es: c.name_es, ja: c.name_ja, ko: c.name_ko, zh: c.name_zh }).filter(([, v]) => v)),
     date: c.release_date,
-    logo: c.logo,
+    logo: assetPath.get(`logo:${c.id}:es`) ?? assetPath.get(`logo:${c.id}:en`) ?? null,
+    logoEn: assetPath.get(`logo:${c.id}:en`) ?? assetPath.get(`logo:${c.id}:es`) ?? null,
+    art: assetPath.get(`art:${c.id}`) ?? null,
     symbol: c.symbol,
     isNew: c.first_seen >= daysAgo(14) && c.first_seen !== FIRST_RUN(db) ? true : (c.release_date ?? '') >= daysAgo(45),
     upcoming: (c.release_date ?? '') > t,
@@ -71,7 +91,8 @@ export function exportData(db: DatabaseSync, log = console.log) {
       s: o.store_id,
       t: o.title,
       u: o.url,
-      i: o.image,
+      i: o.image && !String(o.image).startsWith('data:') ? o.image : null,
+      ih: o.image ? hashes.get(o.image) : undefined,
       p: o.price_eur,
       op: o.currency !== 'EUR' ? o.price : undefined,
       c: o.currency !== 'EUR' ? o.currency : undefined,
@@ -95,6 +116,7 @@ export function exportData(db: DatabaseSync, log = console.log) {
     productTypes: PRODUCT_TYPES.map(({ id, label, short }) => ({ id, label, short })),
     collections,
     stores,
+    refs,
   };
 
   writeFileSync(resolve(OUT, 'catalog.json'), JSON.stringify(catalog));

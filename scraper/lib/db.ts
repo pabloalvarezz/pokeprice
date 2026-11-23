@@ -84,6 +84,32 @@ CREATE TABLE IF NOT EXISTS fx_rates (
   date          TEXT NOT NULL
 );
 
+-- Huella visual de cada imagen de producto (dHash 64 bits + color medio), para elegir la foto
+-- más representativa de cada grupo y descartar las que no encajan.
+CREATE TABLE IF NOT EXISTS image_hash (
+  url           TEXT PRIMARY KEY,
+  hash          TEXT,                     -- 16 hex dHash + 6 hex color; NULL si no se pudo leer
+  checked       TEXT NOT NULL
+);
+
+-- Recursos visuales optimizados que se publican con la web (logos, arte de colección)
+CREATE TABLE IF NOT EXISTS assets (
+  key           TEXT PRIMARY KEY,         -- logo:<colección>:es | logo:<colección>:en | art:<colección>
+  source        TEXT,
+  data          BLOB,                     -- webp; NULL si no existe en origen
+  checked       TEXT NOT NULL
+);
+
+-- Imagen oficial (TCGplayer) de cada producto sellado por colección y gama: referencia visual
+CREATE TABLE IF NOT EXISTS refs (
+  collection_id TEXT NOT NULL,
+  product_type  TEXT NOT NULL,
+  name          TEXT,
+  image         TEXT,
+  hash          TEXT,
+  PRIMARY KEY (collection_id, product_type, name)
+);
+
 CREATE TABLE IF NOT EXISTS runs (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,
   kind          TEXT NOT NULL,
@@ -100,6 +126,8 @@ export function openDb(path = DB_PATH): DatabaseSync {
   db.exec(SCHEMA);
   // Migraciones ligeras
   const cols = (db.prepare('PRAGMA table_info(stores)').all() as { name: string }[]).map((c) => c.name);
+  const ccols = (db.prepare('PRAGMA table_info(collections)').all() as { name: string }[]).map((c) => c.name);
+  if (!ccols.includes('tcg_group')) db.exec('ALTER TABLE collections ADD COLUMN tcg_group INTEGER;');
   if (!cols.includes('last_ok')) {
     db.exec("ALTER TABLE stores ADD COLUMN last_ok TEXT; UPDATE stores SET last_ok = last_run WHERE last_status = 'ok';");
   }

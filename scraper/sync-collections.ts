@@ -100,6 +100,18 @@ export async function syncCollections(db: DatabaseSync, log = console.log) {
 
   // Sets internacionales anunciados que TCGdex aún no tiene (preventas).
   const enGroups = (await fetchJson<{ results: Group[] }>(`${TCGCSV}/3/groups`)).results;
+  // Enlace set de TCGdex ↔ grupo de TCGplayer, por nombre ("SV03: Obsidian Flames" ↔ "Obsidian Flames")
+  const groupByName = new Map<string, number>();
+  for (const g of enGroups) {
+    if (NOT_A_SET.test(g.name) && !/^[A-Z]{2,4}\d/i.test(g.name)) continue;
+    const k = key(stripGroupPrefix(g.name));
+    if (!groupByName.has(k)) groupByName.set(k, g.groupId);
+  }
+  for (const r of rows) {
+    if (r.line !== 'intl' || r.tcg_group) continue;
+    const k = key(r.name_en);
+    r.tcg_group = groupByName.get(k) ?? [...groupByName].find(([gk]) => gk.endsWith(` ${k}`) && k.length >= 3)?.[1] ?? null;
+  }
   const recentCut = new Date(Date.now() - 120 * 864e5).toISOString().slice(0, 10);
   for (const g of enGroups) {
     const name = stripGroupPrefix(g.name);
@@ -109,6 +121,7 @@ export async function syncCollections(db: DatabaseSync, log = console.log) {
     if (date < recentCut || !isNewSet || NOT_A_SET.test(g.name) || intlNames.has(key(name))) continue;
     rows.push({
       id: `intl:${slug(name)}`,
+      tcg_group: g.groupId,
       line: 'intl',
       code: g.abbreviation || null,
       series: /^ME/i.test(g.name) ? 'Megaevolución' : null,
@@ -130,6 +143,7 @@ export async function syncCollections(db: DatabaseSync, log = console.log) {
     const extra = nameEn.startsWith('High Class Pack:') ? [nameEn.replace('High Class Pack:', '').trim()] : [];
     rows.push({
       id: `jp:${code}`,
+      tcg_group: g.groupId,
       line: 'jp',
       code: g.abbreviation.replace(/^m/, 'M'),
       series: jpSeries(code),
@@ -173,7 +187,7 @@ export async function syncCollections(db: DatabaseSync, log = console.log) {
   for (const m of MANUAL_COLLECTIONS) rows.push({ ...m, aliases: JSON.stringify(m.aliases ?? []) });
 
   // ── Volcado ────────────────────────────────────────────────────────────────
-  const cols = ['line', 'code', 'series', 'name_en', 'name_es', 'name_ja', 'name_ko', 'name_zh', 'names_other', 'aliases', 'release_date', 'logo', 'symbol', 'card_count', 'is_base'];
+  const cols = ['tcg_group', 'line', 'code', 'series', 'name_en', 'name_es', 'name_ja', 'name_ko', 'name_zh', 'names_other', 'aliases', 'release_date', 'logo', 'symbol', 'card_count', 'is_base'];
   const upsert = db.prepare(`
     INSERT INTO collections (id, ${cols.join(', ')}, first_seen)
     VALUES (?, ${cols.map(() => '?').join(', ')}, ?)
