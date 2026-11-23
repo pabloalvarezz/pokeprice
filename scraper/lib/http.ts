@@ -5,13 +5,19 @@ export const USER_AGENT = 'Mozilla/5.0 PokePriceBot';
 
 const lastHit = new Map<string, number>();
 const MIN_GAP_MS = Number(process.env.POKEPRICE_GAP_MS ?? 700);
+const hostGap = new Map<string, number>();
+
+/** Ritmo propio para una tienda que se satura con facilidad (ms entre peticiones). */
+export function setHostGap(url: string, ms: number) {
+  hostGap.set(new URL(url).host, ms);
+}
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 async function pace(url: string) {
   const host = new URL(url).host;
   const prev = lastHit.get(host) ?? 0;
-  const wait = prev + MIN_GAP_MS - Date.now();
+  const wait = prev + (hostGap.get(host) ?? MIN_GAP_MS) - Date.now();
   if (wait > 0) await sleep(wait);
   lastHit.set(host, Date.now());
 }

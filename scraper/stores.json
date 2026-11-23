@@ -2785,7 +2785,8 @@
    "soldOut": ".actions .soon",
    "next": "#pagination_next_bottom a"
   },
-  "maxPages": 40
+  "maxPages": 40,
+  "delayMs": 3000
  },
  {
   "id": "samurai-sword-tokyo",

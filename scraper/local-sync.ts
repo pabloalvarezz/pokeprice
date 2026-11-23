@@ -34,13 +34,17 @@ async function syncOnce(): Promise<'done' | 'retry' | 'nothing'> {
   log(`Base de datos descargada (${base.slice(0, 7)})`);
 
   const db = openDb(DB_FILE);
-  const ids = (db.prepare("SELECT id FROM stores WHERE enabled = 1 AND (last_status IS NULL OR last_status != 'ok') ORDER BY id").all() as { id: string }[]).map((r) => r.id);
+  // Tiendas concretas por línea de comandos (reparaciones a mano); si no, las que fallaron en la nube
+  const forced = process.argv.slice(2);
+  const ids = forced.length
+    ? forced
+    : (db.prepare("SELECT id FROM stores WHERE enabled = 1 AND (last_status IS NULL OR last_status != 'ok') ORDER BY id").all() as { id: string }[]).map((r) => r.id);
   if (!ids.length) {
     log('Todas las tiendas se leyeron bien en la nube: nada que hacer.');
     db.close();
     return 'nothing';
   }
-  log(`Tiendas que fallaron en la nube (${ids.length}): ${ids.join(', ')}`);
+  log(`${forced.length ? 'Tiendas pedidas' : 'Tiendas que fallaron en la nube'} (${ids.length}): ${ids.join(', ')}`);
   const started = nowIso();
   const results = await scrapeAll(db, ids, log);
   await hashOfferImages(db, log);

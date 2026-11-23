@@ -5,7 +5,7 @@ import type { DatabaseSync } from 'node:sqlite';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { openDb, nowIso, ROOT, today, tx } from './lib/db.ts';
-import { pool } from './lib/http.ts';
+import { pool, setHostGap } from './lib/http.ts';
 import { fxTable, refreshFx, toEur } from './lib/fx.ts';
 import { norm } from './lib/text.ts';
 import { Classifier } from './classify/classifier.ts';
@@ -96,8 +96,12 @@ function saveOffers(db: DatabaseSync, store: StoreConfig, raw: RawOffer[], clf: 
       }
       kept++;
     }
-    // Lo que ya no aparece en la tienda pasa a inactivo (salvo en lecturas parciales)
-    const partial = (raw as RawOffer[] & { partial?: boolean }).partial;
+    // Lo que ya no aparece en la tienda pasa a inactivo (salvo en lecturas parciales). Si de golpe faltan
+    // más del 60 % de los productos, lo normal es que la tienda haya servido una página recortada: no se toca nada.
+    const prevActive = [...existing.values()].filter((p) => p.active).length;
+    const suspicious = prevActive >= 30 && kept < prevActive * 0.4;
+    if (suspicious) excluded['lectura sospechosa (no se desactiva nada)'] = prevActive - kept;
+    const partial = (raw as RawOffer[] & { partial?: boolean }).partial || suspicious;
     for (const [id, prev] of existing) {
       if (!partial && !seen.has(id) && prev.active) {
         deactivate.run(now, id);
@@ -131,6 +135,7 @@ export async function scrapeAll(db: DatabaseSync, only: string[] = [], log = con
       return { id: store.id, status: 'sin adaptador', read: 0, kept: 0, changes: 0, excluded: {} } as StoreResult;
     }
     const started = Date.now();
+    if (store.delayMs) for (const u of [store.url, store.collection, ...(store.collections ?? [])]) if (u && /^https?:/.test(u)) setHostGap(u, store.delayMs);
     try {
       const raw = await adapter(store, (m) => log(`${tag} ${m}`));
       const res = saveOffers(db, store, raw, clf, fx);

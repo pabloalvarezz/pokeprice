@@ -29,6 +29,8 @@ export type StoreConfig = {
     meta?: string;
     next?: string;
   };
+  /** milisegundos entre peticiones a esta tienda (si se satura con el ritmo normal) */
+  delayMs?: number;
   /** html: paginar con ?<pageParam>=N en vez de seguir el enlace "siguiente" */
   pageParam?: string;
   maxPages?: number;
