@@ -1,0 +1,11 @@
+node_modules/
+dist/
+._*
+.DS_Store
+# Datos generados: la base de datos vive en la rama "datos" (ver .github/workflows/daily.yml)
+data/pokeprice.db
+data/*.db-*
+data/*.txt
+data/logs/
+web/public/data/
+.claude/settings.local.json

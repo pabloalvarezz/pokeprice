@@ -1,0 +1,33 @@
+{
+  "name": "pokeprice",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "PokéPrice — precios de producto sellado de Pokémon TCG en tiendas que envían a España",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "collections": "node --disable-warning=ExperimentalWarning scraper/sync-collections.ts",
+    "scrape": "node --disable-warning=ExperimentalWarning scraper/scrape.ts",
+    "export": "node --disable-warning=ExperimentalWarning scraper/export.ts",
+    "update": "node --disable-warning=ExperimentalWarning scraper/update.ts",
+    "reclassify": "node --disable-warning=ExperimentalWarning scraper/reclassify.ts",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.6"
+  }
+}

@@ -1,0 +1,3131 @@
+[
+ {
+  "id": "pokemillon",
+  "name": "Pokémillon",
+  "url": "https://www.pokemillon.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (250+ items). Big Pokémon specialist; carries ES/EN/JP/KR/CN (language rarely in title, often in body/tags). Shopify bot-check returns 429 after a few rapid requests and collections.json was throttled - scrape slowly. Free peninsula shipping over 180 EUR.",
+  "enabled": true
+ },
+ {
+  "id": "cardzone",
+  "name": "CardZone",
+  "url": "https://cardzone.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "cartas-pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/cartas-pokemon-tcg/products.json 200 (474 items). Also useful handles: japones, espanol, cajas-pokemon, sobres-pokemon, latas-pokemon. Ships peninsula 2-4 days + Baleares.",
+  "enabled": true
+ },
+ {
+  "id": "cartadia",
+  "name": "Cartadia",
+  "url": "https://cartadia.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (~47 items, mostly ES/EN sealed). Ships peninsula + Baleares (Correos).",
+  "enabled": true
+ },
+ {
+  "id": "la-tienda-de-las-cartas",
+  "name": "La Tienda de las Cartas",
+  "url": "https://latiendadelascartas.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-todo",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-todo/products.json 200 (602 items incl. singles). Strong JP/CN/KR range; per-language handles cajas-pokemon-japonesas/-coreano/-chino/-espanol/-ingles. latiendadelascartas.es serves the same catalog. Las Palmas de Gran Canaria; ships to peninsula/Baleares. Based in the Canary Islands: peninsula orders may carry DUA/customs paperwork.",
+  "enabled": true
+ },
+ {
+  "id": "central-tcg",
+  "name": "Central TCG",
+  "url": "https://centraltcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "novedades-pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/novedades-pokemon-tcg/products.json 200 (~30 items = whole small Pokémon range). Per-language handles pokemon-espanol/-japones/-coreano/-chino/-ingles. Ships peninsula 24-72h.",
+  "enabled": true
+ },
+ {
+  "id": "todohits",
+  "name": "TodoHits",
+  "url": "https://todohits.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (654 items). Language at end of title (| Español / | Inglés ...). Ships from Spain 24/48h (Correos).",
+  "enabled": true
+ },
+ {
+  "id": "metamorph-center",
+  "name": "Metamorph Center",
+  "url": "https://metamorphcenter.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (380 items incl. graded). Barcelona; Asian sealed specialist (handles cajas-de-sobres-japoneses-pokemon, cajas-sobres-coreanos-pokemon-tcg). Ships all Spain 24-72h.",
+  "enabled": true
+ },
+ {
+  "id": "the-booster-box",
+  "name": "The Booster Box",
+  "url": "https://theboosterbox.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (362 items). Handles pokemon-japones, pokemon-espanol, pokemon-inges [sic]. Ships peninsula from 4.95 EUR.",
+  "enabled": true
+ },
+ {
+  "id": "canarypop",
+  "name": "Canarypop",
+  "url": "https://canarypop.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (545 items). Also pre-venta-pokemon-tcg. Shipping policy: 'enviamos a península y Baleares'. Based in the Canary Islands: peninsula orders may carry DUA/customs paperwork.",
+  "enabled": true
+ },
+ {
+  "id": "rare-hit",
+  "name": "Rare Hit TCG Shop",
+  "url": "https://rarehit.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "en",
+   "ja",
+   "zh",
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (~43 items, mostly JP/EN; Pokémon Center special boxes). Sevilla; ships peninsula + Baleares + EU.",
+  "enabled": true
+ },
+ {
+  "id": "cardshunters",
+  "name": "CardsHunters",
+  "url": "https://cardshunters.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (~28 items, Spanish sealed). Listed on TCGRadar (Spanish price comparator).",
+  "enabled": true
+ },
+ {
+  "id": "la-escotilla-juegos",
+  "name": "La Escotilla Juegos",
+  "url": "https://laescotillajuegos.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (~60). Board-game/TCG shop with 500+ collections (pokemon handle is on collections.json page 2).",
+  "enabled": true
+ },
+ {
+  "id": "ninpo-store",
+  "name": "Ninpo Store",
+  "url": "https://ninpostore.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (~18). Mostly One Piece + Spanish Pokémon. Free peninsula shipping over 200 EUR.",
+  "enabled": true
+ },
+ {
+  "id": "allintcg",
+  "name": "AllInTCG",
+  "url": "https://allintcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (183). Language tag in title [ESP]/[ENG]. Free peninsula shipping over 200 EUR.",
+  "enabled": true
+ },
+ {
+  "id": "cardhub-tcg",
+  "name": "CardHub TCG",
+  "url": "https://cardhubtcg.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "all",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "No Pokémon-only collection; /collections/all/products.json 200 (also sports/Panini, figures). Per-language handles espanol, japones, chino, coreano (Pokémon-heavy). Ships all Spain incl. Canarias.",
+  "enabled": true
+ },
+ {
+  "id": "sunny-store",
+  "name": "Sunny Store",
+  "url": "https://sunnystore.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (689). Strong CN/KR/JP: handles cajas-pokemon-chino, cajas-coreano-pokemon, cajas-japones-pokemon, pokemon-cajas-espanol. Language in caps in title.",
+  "enabled": true
+ },
+ {
+  "id": "kame-house-cards",
+  "name": "Kame House Cards",
+  "url": "https://kamehousecards.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (444 incl. singles). Listed on TCGRadar.",
+  "enabled": true
+ },
+ {
+  "id": "top-rocket-shop",
+  "name": "Top Rocket Shop",
+  "url": "https://toprocketshop.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "all",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "No single Pokémon collection; /collections/all/products.json 200 (~184, mostly Pokémon + some One Piece/accessories). Language handles producto-espanol/-japones/-ingles/-chino, coreano.",
+  "enabled": true
+ },
+ {
+  "id": "tcgval",
+  "name": "TCGVal",
+  "url": "https://tcgval.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "all",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Pokémon-focused shop without a top-level pokemon handle; /collections/all/products.json 200 (169, includes accessories). Sub-handles pokemon-booster-box, pokemon-etb, pokemon-sobres, pokemon-cajas, pokemon-latas, pokemon-blisters.",
+  "enabled": true
+ },
+ {
+  "id": "epicdeck",
+  "name": "EpicDeck",
+  "url": "https://epicdeck.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (177). Titles rarely state language (mostly Spanish product names). Ships with GLS.",
+  "enabled": true
+ },
+ {
+  "id": "grille-cards",
+  "name": "Grille Cards",
+  "url": "https://grillecards.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (~32). Small shop; language in parentheses. Listed on TCGRadar.",
+  "enabled": true
+ },
+ {
+  "id": "winigames",
+  "name": "WiniGames",
+  "url": "https://winigames.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (74). Ships all Spain incl. Baleares/Canarias/Ceuta/Melilla.",
+  "enabled": true
+ },
+ {
+  "id": "la-nave-tcg",
+  "name": "La Nave TCG",
+  "url": "https://lanavetcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (~45). Asian boxes (KR/CN/JP 30th) + Spanish. Ships to Spain.",
+  "enabled": true
+ },
+ {
+  "id": "universe-tcg",
+  "name": "Universe TCG",
+  "url": "https://universetcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "ja",
+   "en",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (250+). Mollet del Vallès (Barcelona), ships worldwide. Large mixed catalog: many singles/promos plus vintage & current JP booster boxes - filter by product_type/title.",
+  "enabled": true
+ },
+ {
+  "id": "un-sobre-mas",
+  "name": "Un Sobre Más",
+  "url": "https://unsobremas.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (245). Language tag [EN]/[ES]. Ships peninsula + Baleares only (no Canarias).",
+  "enabled": true
+ },
+ {
+  "id": "darizard9",
+  "name": "Darizard9",
+  "url": "https://darizard9.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (81). Ships from Spain (Correos, Seur, MRW, UPS).",
+  "enabled": true
+ },
+ {
+  "id": "solohits",
+  "name": "SoloHits",
+  "url": "https://solohits.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (202). Peninsula shipping 2-15 days, 11.90 EUR, customs not included. Based in the Canary Islands: peninsula orders may carry DUA/customs paperwork.",
+  "enabled": true
+ },
+ {
+  "id": "el-bazar-tcg",
+  "name": "El Bazar TCG",
+  "url": "https://elbazartcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (361 incl. singles). Chinese marked (CH).",
+  "enabled": true
+ },
+ {
+  "id": "1001tcg",
+  "name": "1001 TCG",
+  "url": "https://1001tcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (164). Handles pokemon-japones etc. Ships Spain 24-72h, free over 200 EUR.",
+  "enabled": true
+ },
+ {
+  "id": "cartas-mencey",
+  "name": "Cartas Mencey",
+  "url": "https://cartasmencey.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (180; also pokemon-japones 392, pokemon-espanol 265). Shipping policy says it ships EXCLUSIVELY within the Canary Islands - no peninsula shipping.",
+  "enabled": false
+ },
+ {
+  "id": "freakcorp",
+  "name": "FreakCorp",
+  "url": "https://freakcorp.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (142). English set names in titles. Listed on TCGRadar.",
+  "enabled": true
+ },
+ {
+  "id": "el-duelista",
+  "name": "El Duelista",
+  "url": "https://elduelista.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "ja",
+   "zh",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 but mostly singles/accessories (~33 sealed of first 250). Ships from Spain, peninsula 24-48h.",
+  "enabled": true
+ },
+ {
+  "id": "cards-labo",
+  "name": "Cards Labo",
+  "url": "https://cardslabo.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (~28). Language in title (- JAPONÉS / - CHINO).",
+  "enabled": true
+ },
+ {
+  "id": "ikigai-comics",
+  "name": "Ikigai Comics",
+  "url": "https://ikigaicomicstienda.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (85). Comic shop with strong JP/KR/CN Pokémon boxes.",
+  "enabled": true
+ },
+ {
+  "id": "otakuya-tcg",
+  "name": "Otakuya TCG",
+  "url": "https://tcg.otakuya.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "tcg-pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/tcg-pokemon/products.json 200 (261, includes singles). Per-language handles tcg-pokemon-espanol/-ingles/-japones/-chino.",
+  "enabled": true
+ },
+ {
+  "id": "golden-pulls-cards",
+  "name": "Golden Pulls Cards",
+  "url": "https://goldenpullscards.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (97). Language after | in title or flag emoji.",
+  "enabled": true
+ },
+ {
+  "id": "nexaria-tcg",
+  "name": "Nexaria TCG",
+  "url": "https://nexariatcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (~17, Korean booster boxes). Ships to peninsula, Baleares, Canarias, Ceuta, Melilla.",
+  "enabled": true
+ },
+ {
+  "id": "pokedex-cards",
+  "name": "Pokédex Cards",
+  "url": "https://pokedexcards.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "all",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/products.json 200. No single TCG collection: sealed is split into espanol, japones, coreano, chino, ingles, caja-corano, sobre-coreano; 'all' also contains lots of 3D-print/merch. Ships from Spain.",
+  "enabled": true
+ },
+ {
+  "id": "the-poke-shop",
+  "name": "The Poke Shop",
+  "url": "https://thepoke.shop",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "17",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 17 'cartas-pokemon' (175) 200. Subcats: ETB 20, sobres 32, latas 31, blisters 30. Spanish business (aviso legal); 24/48h shipping.",
+  "enabled": true
+ },
+ {
+  "id": "pokewoke",
+  "name": "Pokewoke",
+  "url": "https://pokewoke.store",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "127",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 127 'poke-tienda' (62) 200; also includes figures. Barcelona, ships 24-48h.",
+  "enabled": true
+ },
+ {
+  "id": "oz-juegos",
+  "name": "OZ Juegos",
+  "url": "https://ozjuegos.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "28",
+  "languages": [
+   "es",
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 28 'pokemon' (173) 200. Board-game shop in Alcobendas (Madrid).",
+  "enabled": true
+ },
+ {
+  "id": "la-casa-de-kartus",
+  "name": "La Casa de Kartus",
+  "url": "https://lacasadekartus.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "171",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 171 'pokemon' (76) 200; note sibling top-level cats 167 pokemon-booster-box, 166 cajas-tematicas, 168 etb, 164 latas, 162 sobres are NOT children of 171. Free peninsula shipping over 180 EUR.",
+  "enabled": true
+ },
+ {
+  "id": "card-center",
+  "name": "CardCenter",
+  "url": "https://cardcenter.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "91",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 91 'cartas-pokemon' (63) 200. Pontevedra (Galicia).",
+  "enabled": true
+ },
+ {
+  "id": "supercollectors",
+  "name": "SuperCollectors",
+  "url": "https://www.supercollectors.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "135",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 135 'cartas-pokemon' (226) 200. Barcelona; also sports cards. Ships 24/48h peninsula.",
+  "enabled": true
+ },
+ {
+  "id": "kantogo",
+  "name": "KantoGo",
+  "url": "https://kantogo.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "23",
+  "languages": [
+   "es",
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 23 'pokemon' (7 items - small) 200. Madrid.",
+  "enabled": true
+ },
+ {
+  "id": "reino-de-cartas",
+  "name": "Reino de Cartas",
+  "url": "https://reinodecartas.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "23",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 23 'pokemon-tcg' (50) 200. Good JP/KR/CN pack coverage.",
+  "enabled": true
+ },
+ {
+  "id": "bimbacards",
+  "name": "BimbaCards",
+  "url": "https://bimbacards.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "520",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 520 'pokemon' (168) 200.",
+  "enabled": true
+ },
+ {
+  "id": "somos-juegos",
+  "name": "Somos Juegos",
+  "url": "https://www.somosjuegos.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "1107",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "No Pokémon category: Pokémon sits in 1107 'lcg-tcg' (mixed TCG/LCG) - filter titles 'Pokemon JCC', or use Store API ?search=pokemon (44 hits, 200). Madrid board-game shop.",
+  "enabled": true
+ },
+ {
+  "id": "nippon-store",
+  "name": "Nippon Store",
+  "url": "https://nipponstore.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "95",
+  "languages": [
+   "ja",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 95 'cartas-pokemon' (66) 200; subcats 101 cajas, 100 sobres, 102 singles. Japanese import shop (@nipponstorespain); address not confirmed.",
+  "enabled": true
+ },
+ {
+  "id": "hyker-card-house",
+  "name": "Hykercardhouse",
+  "url": "https://hykercardhouse.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "83",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 83 'pokemon' (69) 200.",
+  "enabled": true
+ },
+ {
+  "id": "mono-de-juegos",
+  "name": "Mono de Juegos",
+  "url": "https://www.monodejuegos.shop",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "592",
+  "languages": [
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 592 'pokemon-trading-cards' (12) 200. Barcelona board-game shop; ships 24/48h.",
+  "enabled": true
+ },
+ {
+  "id": "cardcrack",
+  "name": "CardCrack",
+  "url": "https://cardcrack.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "43",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 43 'pokemon-tcg' (23) 200; JP/KR are separate top-level cats 213 'pokemon-japones' and 212 'pokemo-coreano'. Málaga.",
+  "enabled": true
+ },
+ {
+  "id": "odissey-games",
+  "name": "Odissey Games",
+  "url": "https://tienda.odisseygames.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "210",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API on tienda.odisseygames.com, category 210 'pokemon' (85) 200. Many bundle 'PACK' listings.",
+  "enabled": true
+ },
+ {
+  "id": "zial-tcg",
+  "name": "Zial TCG Store",
+  "url": "https://www.zialtcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "116",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 116 'pokemon' (30) 200.",
+  "enabled": true
+ },
+ {
+  "id": "zanarkandia",
+  "name": "Zanarkandia",
+  "url": "https://zanarkandia.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "28",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 28 'pokemon' (23) 200. Spanish (Castellano) sealed.",
+  "enabled": true
+ },
+ {
+  "id": "tsuki-center",
+  "name": "Tsuki Center",
+  "url": "https://tsukicenter.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "33",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 33 'pokemon' (56) 200. Language in title (| Español |).",
+  "enabled": true
+ },
+ {
+  "id": "holoplaza-tcg",
+  "name": "HoloPlaza TCG",
+  "url": "https://holoplazatcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "20",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 20 'pokemon-tcg' (377) 200 - category also contains some Riftbound items.",
+  "enabled": true
+ },
+ {
+  "id": "pop-paradise",
+  "name": "Pop Paradise",
+  "url": "https://popparadise.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "32",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 32 'pokemon-tcg' (107) 200.",
+  "enabled": true
+ },
+ {
+  "id": "epic-hit-store",
+  "name": "Epic Hit Store",
+  "url": "https://epichitstore.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "77",
+  "languages": [
+   "es",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Store API category 77 'pokemon' (202) 200; titles often omit language.",
+  "enabled": true
+ },
+ {
+  "id": "flashstore",
+  "name": "Flash Store",
+  "url": "https://flashstore.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://flashstore.es/categoria/pokemon/",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "WooCommerce but /wp-json Store API 403 (Cloudflare); HTML category listing 200. Subcats /cajas-de-sobres/, /cajas-de-entrenador/, /china.",
+  "enabled": true
+ },
+ {
+  "id": "shinyhit",
+  "name": "ShinyHit",
+  "url": "https://shinyhit.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://shinyhit.com/categoria-producto/pokemon/",
+  "languages": [
+   "ja",
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "WooCommerce but Store API 403 (also via ?rest_route); HTML listing 200, one page (24 items, mostly JP booster boxes). Madrid/Jerez vending machines; peninsula 24-48h. LIMITATION: discounted items render <del>old</del>new inside one element, which parsePrice cannot split, so the price selector skips them (:not(:has(del))) - ~14/24 sale items are dropped instead of mis-priced. Needs adapter support for stripping <del> before parsing.",
+  "selectors": {
+   "item": "article.card",
+   "title": "h3",
+   "price": ".pr .v.num:not(:has(del))",
+   "link": "a.im",
+   "image": "a.im > img",
+   "soldOut": ".dl:contains(\"Agotado\"), .dl:contains(\"Sin stock\")"
+  },
+  "maxPages": 1,
+  "enabled": true
+ },
+ {
+  "id": "tcg-fusion",
+  "name": "TCG Fusion",
+  "url": "https://tcgfusion.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://tcgfusion.com/tienda/pokemon-tcg/",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "WooCommerce but Store API 403; HTML listing 200. Direct JP/Asian imports.",
+  "enabled": true
+ },
+ {
+  "id": "friki-de-nacimiento",
+  "name": "Friki de Nacimiento",
+  "url": "https://frikidenacimiento.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://frikidenacimiento.es/pokemon-tcg/",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "WooCommerce but Store API 401; HTML listing 200 (9 pages x 24). Explicit selectors: the generic WooCommerce price selector grabbed the whole .price block on sale items (old+new price) and lost ~90 products to null prices.",
+  "selectors": {
+   "item": ".products .product.type-product",
+   "title": ".woocommerce-loop-product__title",
+   "price": ".price ins .amount, .price:not(:has(ins)) .amount",
+   "link": "a.woocommerce-LoopProduct-link",
+   "image": ".product-card__thumb img",
+   "soldOut": "a.button.product_type_simple:not(.add_to_cart_button)",
+   "next": "a.next.page-numbers"
+  },
+  "enabled": true
+ },
+ {
+  "id": "psypacks",
+  "name": "PsyPacks",
+  "url": "https://psypacks.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://psypacks.com/catalogo/?psy_cat=booster-box,booster-pack",
+  "languages": [
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "WordPress/WooCommerce with Store API 401; custom catalog page 200 (also ?psy_cat=booster-pack). JP/CN import specialist; free peninsula shipping over 120 EUR.",
+  "pageParam": "psy_page",
+  "maxPages": 15,
+  "selectors": {
+   "item": ".psyw-card",
+   "title": "a.card-name",
+   "price": ".card-price",
+   "link": "a.card-name",
+   "image": ".card-img img",
+   "soldOut": ".card-btn-out"
+  },
+  "enabled": true
+ },
+ {
+  "id": "milcomics",
+  "name": "Mil Cómics",
+  "url": "https://www.milcomics.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": "https://www.milcomics.com/f/cartas-coleccion-pokemon-714",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Listing 200. Comic/collectibles shop; ships 24/48h. DISABLED 2026-11-23: PrestaShop AJAX JSON works, but the Pokémon TCG category (id 714) has 0 products, the TCG parent category (542, 64 items) has no Pokémon, and site search for pokemon only returns comics/merch. Re-enable (platform prestashop, same collection) if they start stocking sealed Pokémon.",
+  "enabled": false
+ },
+ {
+  "id": "mathom",
+  "name": "Mathom",
+  "url": "https://mathom.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": "https://mathom.es/es/4596-pokemon",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "Listing 200 (product-miniature markup). Spanish-distribution 'Pokemon JCC' products, also accessories.",
+  "enabled": true
+ },
+ {
+  "id": "stargeek",
+  "name": "Star Geek",
+  "url": "https://www.stargeek.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": "https://www.stargeek.es/cartas-pokemon/",
+  "languages": [
+   "es",
+   "en",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Listing 200. Barcelona shop; says it also brings JP/CN product.",
+  "enabled": true
+ },
+ {
+  "id": "master-of-games",
+  "name": "Master of Games",
+  "url": "https://masterofgames.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": "https://masterofgames.es/es/29-pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Listing 200. Bilbao. Subcategory 31-sobres; language as [ESPAÑOL] prefix.",
+  "enabled": true
+ },
+ {
+  "id": "pidopop",
+  "name": "Pidopop",
+  "url": "https://pidopop.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "PrestaShop (AJAX JSON listing works). Based in the Canary Islands: peninsula orders may carry DUA/customs paperwork. /cartas-pokemon is 907 items / 29 pages, mostly singles, and 29 quick requests got HTTP 429; nginx also returns 429 for any ?resultsPerPage= URL. Now reads the sealed-only language categories (espanolas, inglesas, coreanas) plus sobres and latas (~15 requests, no 429 in testing). japonesas is skipped (309 items, mostly JP singles); JP/CN sealed are picked up via sobres. A few sealed items only in the parent category may be missed.",
+  "collections": [
+   "https://pidopop.com/espanolas",
+   "https://pidopop.com/inglesas",
+   "https://pidopop.com/coreanas",
+   "https://pidopop.com/sobres",
+   "https://pidopop.com/latas"
+  ],
+  "enabled": true
+ },
+ {
+  "id": "geekkaos",
+  "name": "Geekkaos",
+  "url": "https://geekkaos.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": "https://geekkaos.com/27-pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "Listing 200. Listed on TCGRadar.",
+  "enabled": true
+ },
+ {
+  "id": "metropolis-center",
+  "name": "Metrópolis Center",
+  "url": "https://metropolis-center.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": "https://metropolis-center.com/catalogo/juegos-de-cartas/pokemon",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "PrestaShop homepage 200 but the Pokémon category page returns 403 'Just a moment' (Cloudflare) to the bot UA. Large TCG specialist.",
+  "enabled": false
+ },
+ {
+  "id": "dungeon-marvels",
+  "name": "Dungeon Marvels",
+  "url": "https://dungeonmarvels.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": "https://dungeonmarvels.com/188-pokemon",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Every request (incl. homepage) returns HTTP 468 bot block. Category URL taken from search results. Barcelona.",
+  "enabled": false
+ },
+ {
+  "id": "bandua-wargames",
+  "name": "Bandua Wargames",
+  "url": "https://banduawargames.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": null,
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "PrestaShop homepage 200 but no Pokémon category link found and site search is JS-only; product URLs look like /es/pokemon-tcg/<id>-...html.",
+  "enabled": false
+ },
+ {
+  "id": "todo-saint-seiya",
+  "name": "Todo Saint Seiya",
+  "url": "https://www.todosaintseiya.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "prestashop",
+  "collection": null,
+  "languages": [
+   "es",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "PrestaShop; sells Pokémon sealed (ES ETBs, CN boxes) but category URL not found and search is JS-only.",
+  "enabled": false
+ },
+ {
+  "id": "zacatrus",
+  "name": "Zacatrus",
+  "url": "https://zacatrus.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://zacatrus.es/catalogsearch/result/?q=pokemon",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "Magento; no dedicated Pokémon category found, search listing 200. Large board-game chain, Pokémon range small and partly legacy.",
+  "selectors": {
+   "item": "li.product-item",
+   "title": ".product-item-link",
+   "price": "[data-price-type=finalPrice]",
+   "priceAttr": "data-price-amount",
+   "link": "a.product-item-link",
+   "image": "img.product-image-photo",
+   "soldOut": ".stock.unavailable",
+   "next": ".pages-item-next a"
+  },
+  "enabled": true
+ },
+ {
+  "id": "kaburi",
+  "name": "Kaburi Rol & Games",
+  "url": "https://www.kaburi.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.kaburi.es/search-result.aspx?Badge=MENU|POKEMON|CARTAS|COLECCIONABLES",
+  "languages": [
+   "es",
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "Custom ASP.NET store; menu-badge listing 200. Only the first 20 products are reachable: pagination/page size are ASP.NET form POSTs (Boton_Paginar), GET params ignored. Price from meta sale-price (discount) else main-price; visible price text has no decimal separator.",
+  "selectors": {
+   "item": "div.col-6.col-lg-3:has(meta[name=Id])",
+   "title": "[itemprop=title]",
+   "price": "meta[name=sale-price], meta[name=main-price]:not(:has(~ meta[name=sale-price]))",
+   "priceAttr": "content",
+   "link": "a[itemprop=link]",
+   "image": "figure img",
+   "soldOut": "meta[name=availability][content=out_of_stock]"
+  },
+  "maxPages": 1,
+  "enabled": true
+ },
+ {
+  "id": "artmantoys",
+  "name": "Artmantoys",
+  "url": "https://www.artmantoys.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.artmantoys.es/f_pokemon_f29580/",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Mabisy platform; listing 200 with subcategories (cajas-entrenador-y-bundle, etc.). 4 pages via .mb-pagination next (?lp=N). Language is only a flag label (e.g. Reino Unido), not in titles, so English products may be classified as es.",
+  "selectors": {
+   "item": "div.mb-product",
+   "title": "p.title a.name",
+   "price": ".prices .price",
+   "link": "p.title a.name",
+   "image": "picture img",
+   "soldOut": ".label-nostock",
+   "next": ".mb-pagination a.item.next"
+  },
+  "enabled": true
+ },
+ {
+  "id": "battledeck",
+  "name": "BattleDeck",
+  "url": "https://www.battledeck.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.battledeck.es/collections/pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": "Canary Islands only: store FAQ says it does not ship to the Peninsula, Baleares, Ceuta or Melilla",
+  "notes": "Desactivada: según su FAQ sólo envía dentro de Canarias. Custom Next.js store (Shopify-like URLs but no products.json). Server HTML renders only 40 of ~344 Pokémon products (rest is client-side; ?page ignored), so coverage is partial. JP/CN heavy. FAQ (2026-11): ships ONLY within the Canary Islands - no Peninsula/Baleares/Ceuta/Melilla.",
+  "selectors": {
+   "item": ".bg-card:has(h3)",
+   "title": "h3",
+   "price": ".mt-auto .text-primary, .mt-auto .text-red-600",
+   "link": "a[href^=\"/products/\"]",
+   "image": "img",
+   "soldOut": "span:contains(\"AGOTADO\"), [data-slot=card-footer] button:contains(\"AÑADIR\")[disabled]"
+  },
+  "maxPages": 1,
+  "enabled": false
+ },
+ {
+  "id": "todo-tcg-spain",
+  "name": "Todo TCG Spain",
+  "url": "https://todotcgspain.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://todotcgspain.com/pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Custom platform; ships all Spain 48-72h. The page is a single-HTML SPA holding every section, so item is filtered to a.prod-card[data-category=pokemon] (50 unique products, no pagination). LIMITATION: titles are terse (e.g. \"Storm Emerald 30\"); product type and language live only in data-type/data-lang attributes, so the classifier drops ~35 of 50 as singles/non-Pokémon.",
+  "selectors": {
+   "item": "a.prod-card[data-category=pokemon]",
+   "title": "div[style*=\"font-size:14.5px\"]",
+   "price": "span[style*=\"font-weight:800\"]",
+   "link": "a",
+   "image": "img",
+   "soldOut": "button.prod-add-btn[disabled]"
+  },
+  "maxPages": 1,
+  "enabled": true
+ },
+ {
+  "id": "shinigami-comics",
+  "name": "Shinigami Cómics",
+  "url": "https://www.shinigamicomics.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.shinigamicomics.com/pokemon-tcg-lp-4-50-familia-84/",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Custom comic-shop platform; listing 200. Ponferrada.",
+  "selectors": {
+   "item": "ul.mini",
+   "title": ".nombreProducto a",
+   "price": ".precio_final",
+   "priceAttr": "content",
+   "link": ".nombreProducto a",
+   "image": "img.lazy",
+   "soldOut": "[data-content=out_of_stock]"
+  },
+  "enabled": true
+ },
+ {
+  "id": "arcadia-comics",
+  "name": "Arcadia Comics Online",
+  "url": "https://www.arcadiacomicsonline.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.arcadiacomicsonline.com/POKEMON-cPOKEMONCARTAS2.html",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Custom platform; listing 200. Comic shop in Móstoles (Madrid).",
+  "selectors": {
+   "item": ".web-mod-lst-ul .web-mod-art-wrap",
+   "title": "a.web-mod-art-nombre",
+   "price": ".web-mod-art-oferta-pvp, .web-mod-art-compra-pvp:not(:has(.web-mod-art-oferta-pvp)) .web-mod-art-importe",
+   "link": "a.web-mod-art-nombre",
+   "image": "img",
+   "soldOut": ".web-mod-compra-disp > .web-mod-compra-disp:not(.DISPONIBLE), .web-mod-compra-disp > .PROXIMAME"
+  },
+  "enabled": true
+ },
+ {
+  "id": "generacion-x",
+  "name": "Generación X",
+  "url": "https://www.generacionx.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "Custom ASP.NET comic-shop chain. /<keyword> routes act as GET searches (sorted newest first): /pokemon-tcg (all TCG items, 3 on 2026-11-23) + /pokemon (first 12 newest Pokémon items of any kind). Pagination is ASP.NET postback only, so only page 1 of each. Listing text truncates titles to ~22 chars (full title only in attributes), so some products are dropped by the classifier.",
+  "selectors": {
+   "item": ".fileproduct",
+   "title": ".filetitle span",
+   "price": ".importe3PVPIni",
+   "link": ".filetitle a",
+   "image": "img",
+   "soldOut": ".fileavailability :not(.EnStock)"
+  },
+  "maxPages": 1,
+  "collections": [
+   "https://www.generacionx.es/pokemon-tcg",
+   "https://www.generacionx.es/pokemon"
+  ],
+  "enabled": true
+ },
+ {
+  "id": "tcg-bardeck",
+  "name": "TCG Bardeck",
+  "url": "https://www.tcgbardeck.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.tcgbardeck.com/category/productos-sellados-pok%C3%A9mon",
+  "languages": [
+   "es",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "Wix store; listing 200 (large page, product data embedded). Sevilla.",
+  "selectors": {
+   "item": "[data-hook=product-list-grid-item]",
+   "title": "[data-hook=product-item-name]",
+   "price": "[data-hook=product-item-price-to-pay], [data-hook=price-range-from]",
+   "link": "a[href*=\"/product-page/\"]",
+   "image": "img",
+   "soldOut": "[data-hook=product-item-add-to-cart-button][aria-disabled=true], [data-hook=product-item-out-of-stock]"
+  },
+  "maxPages": 10,
+  "enabled": true
+ },
+ {
+  "id": "comic-stores",
+  "name": "Comic Stores",
+  "url": "https://comicstores.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://comicstores.es/busqueda/listaLibros.php?pagSel=1&cuantos=100&orden=prioridad+asc%2C+fecha_alta+desc&titulo=POKEMON&tipoArticulo=P0&codClasificacion=419",
+  "languages": [
+   "es",
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Custom comic-shop platform; Pokémon brand search listing 200 (includes some non-card merch).",
+  "pageParam": "pagSel",
+  "maxPages": 10,
+  "selectors": {
+   "item": "li.item.item-papel",
+   "title": "dd.title a",
+   "price": ".precio strong, .precio:not(:has(strong))",
+   "link": "dd.title a",
+   "image": "img.foto",
+   "soldOut": ".disponibilidad.red"
+  },
+  "enabled": true
+ },
+ {
+  "id": "cazacartas",
+  "name": "Cazacartas",
+  "url": "https://www.cazacartastienda.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.cazacartastienda.es/tienda?game=pokemon",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "JS-rendered store (WP Store API 403); listing HTML 200 but products load client-side - needs a headless browser.",
+  "enabled": false
+ },
+ {
+  "id": "ichiba-station",
+  "name": "Ichiba Station",
+  "url": "https://ichibastation.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": null,
+  "languages": [
+   "es",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "Single-page app (Vite); no server-rendered catalog found. Madrid vending-machine operator selling sealed Pokémon/One Piece.",
+  "enabled": false
+ },
+ {
+  "id": "mundo-distorsion",
+  "name": "Mundo Distorsión",
+  "url": "https://mundodistorsion.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": null,
+  "languages": [
+   "es",
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "WooCommerce (URLs /product-category/tcgs/pokemon-tcg/) but every request returns 403 Cloudflare challenge; category id unknown.",
+  "enabled": false
+ },
+ {
+  "id": "pokechewe",
+  "name": "PokeChewe",
+  "url": "https://pokechewe.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": null,
+  "languages": [
+   "es",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "WooCommerce (/categoria-producto/pokemon/) behind a custom 'Verificando...' bot wall on every URL incl. Store API.",
+  "enabled": false
+ },
+ {
+  "id": "tcg-parada",
+  "name": "TCG Parada",
+  "url": "https://www.tcgparada.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": null,
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "Every request 403 Cloudflare challenge; platform unknown. Las Palmas; claims 24/48h shipping to all Spain.",
+  "enabled": false
+ },
+ {
+  "id": "herofreaks",
+  "name": "HeroFreaks",
+  "url": "https://herofreaks.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://herofreaks.com/comprar/juegos-de-cartas/pokemon-jcc/",
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "Every request 403 Cloudflare challenge; listing URL from search results.",
+  "enabled": false
+ },
+ {
+  "id": "pokebank",
+  "name": "PokeBank",
+  "url": "https://pokebank.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": null,
+  "languages": [
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "Homepage/products.json 403, Store API 429 - blocked; platform unknown.",
+  "enabled": false
+ },
+ {
+  "id": "jj-collection",
+  "name": "JJCollection",
+  "url": "https://www.jjcollection.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg-atrapalos-todos",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg-atrapalos-todos/products.json 200 (119). Also pokemon-tcg-en-espanol/-en-chino etc. Tenerife store + Sevilla pickup; free peninsula shipping over 100 EUR. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly. Based in the Canary Islands: peninsula orders may carry DUA/customs paperwork.",
+  "enabled": true
+ },
+ {
+  "id": "tcg-collection",
+  "name": "TCG Collection",
+  "url": "https://tcg-collection.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (54). Many items sold out. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "nunca-es-demasiado-tcg",
+  "name": "NuncaEsDemasiado TCG",
+  "url": "https://nuncaesdemasiadotcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "producto-sellado",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/producto-sellado/products.json 200 (17, Pokémon-only shop). Per-language handles todo-nuestro-producto-sellado-en-chino/-japones/-ingles/-espanol. L'Hospitalet (Barcelona); free shipping from 60 EUR. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "iberian-collect",
+  "name": "Iberian Collect",
+  "url": "https://iberiancollect.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-trading-card-game",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-trading-card-game/products.json 200 (130; includes some graded cards). pokeiberiancoleccionables.com is the same Shopify store (identical collections). Ships from Spanish warehouse 24-48h. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "tcg-level",
+  "name": "TCG Level",
+  "url": "https://tcglevel.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (73). Strong CN/JP/KR boxes ('| Chino' suffix). Ships Correos España peninsular 1-3 days. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "toy-planet",
+  "name": "Toy Planet",
+  "url": "https://www.toyplanet.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "cartas-y-sobres-coleccionables",
+  "languages": [
+   "es",
+   "en",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "Spanish toy-store chain on Shopify. /collections/cartas-y-sobres-coleccionables/products.json 200 (179) - mixed with Panini/Disney cards, filter 'Pokémon' in title. Mostly Spanish-edition product. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "cardsthago",
+  "name": "Cardsthago",
+  "url": "https://cardsthago.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "cartas-pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/cartas-pokemon-tcg/products.json 200 (53). Per-language handles pokemon-espanol/-ingles/-japones/-coreano. Free shipping over 250 EUR. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "pokedeal-tcg",
+  "name": "PokeDealTCG",
+  "url": "https://www.pokedealtcg.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "todos-los-sellados",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/todos-los-sellados/products.json 200 (205). Also pokemon-japones, pokemon-coreano. Ships from Spain 24-48h. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "vera-games",
+  "name": "VeraGames",
+  "url": "https://veragames.es",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "ja",
+   "en",
+   "es"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon/products.json 200 (~18, mostly JP). Also Riftbound/One Piece/Lorcana. Ships from Spain 24-72h. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "factory-cards-tcg",
+  "name": "Factory Cards TCG",
+  "url": "https://factorycardstcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "comprarcartaspokemon",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/comprarcartaspokemon/products.json 200 (68). Madrid. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "elite-store-tcg",
+  "name": "Elite Store TCG",
+  "url": "https://elitestoretcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (59). Also pokemon-japones. Murcia (Sangonera la Verde). Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "lorcanos-tcg",
+  "name": "Lorcanos TCG",
+  "url": "https://lorcanostcg.com",
+  "country": "ES",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "es",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "/collections/pokemon-tcg/products.json 200 (34). Per-language handles pokemon-tcg-espanol/-japones/-coreano/-chino. Ships all Spain. Shopify bot-check (429 'Verifying your connection') hit this store after a few rapid requests; verified later with ~75s spacing - scrape slowly.",
+  "enabled": true
+ },
+ {
+  "id": "zatu",
+  "name": "Zatu Games",
+  "url": "https://www.zatu.com",
+  "country": "GB",
+  "currency": "GBP",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": "Calculated at checkout; IOSS (EU VAT collected at checkout) under EUR 150, DDU above",
+  "notes": "Still ships to Spain post-Brexit (3-5 working days). Other sealed handles: booster-packs-pokemon, pokemon-tcg-elite-trainer-boxes, other-sealed-product-pokemon, japanese-pokemon. Spain/EUR in Shopify market selector.",
+  "enabled": true,
+  "collections": [
+   "booster-boxes-pokemon",
+   "booster-packs-pokemon",
+   "pokemon-tcg-elite-trainer-boxes",
+   "other-sealed-product-pokemon",
+   "japanese-pokemon"
+  ]
+ },
+ {
+  "id": "titan-cards",
+  "name": "Titan Cards",
+  "url": "https://www.titancards.co.uk",
+  "country": "GB",
+  "currency": "GBP",
+  "platform": "shopify",
+  "collection": "pokemon-sealed-products",
+  "languages": [
+   "en",
+   "ja",
+   "ko",
+   "zh"
+  ],
+  "shippingToSpain": "Calculated at checkout (airmail, tracked or Parcelforce Euro); EU import VAT/duty may apply",
+  "notes": "Still ships to Europe post-Brexit. Extra handles: pokemon-tcg-booster-boxes-korean, chinese-pokemon-booster-boxes. Collection includes some mystery bundles.",
+  "enabled": true
+ },
+ {
+  "id": "japan2uk",
+  "name": "Japan2UK",
+  "url": "https://www.japan2uk.com",
+  "country": "GB",
+  "currency": "GBP",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ja",
+   "en",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": "Calculated at checkout; free worldwide over GBP 200; not DDP for Spain (import VAT on delivery)",
+  "notes": "Asian-language specialist. Per-language sealed handles: pokemon-japanese-booster-packs, pokemon-japanese-decks-sets-magazines, pokemon-korean-booster-boxes, pokemon-korean-booster-packs, pokemon-simplified-chinese-booster-boxes, pokemon-traditional-chinese-booster-boxes, pokemon-english-booster-boxes, pokemon-english-elite-trainer-boxes, pokemon-english-collection-boxes, pokemon-english-tins-blisters. Some placeholder variants priced 0.01.",
+  "enabled": true,
+  "collections": [
+   "pokemon-japanese-booster-boxes",
+   "pokemon-japanese-booster-packs",
+   "pokemon-japanese-decks-sets-magazines",
+   "pokemon-korean-booster-boxes",
+   "pokemon-korean-booster-packs",
+   "pokemon-korean-decks-sets",
+   "pokemon-simplified-chinese-booster-boxes",
+   "pokemon-simplified-chinese-gift-boxes-decks-sets",
+   "pokemon-traditional-chinese-booster-boxes",
+   "pokemon-traditional-chinese-decks-sets"
+  ]
+ },
+ {
+  "id": "total-cards",
+  "name": "Total Cards",
+  "url": "https://www.totalcards.net",
+  "country": "GB",
+  "currency": "GBP",
+  "platform": "shopify",
+  "collection": "pokemon-sealed-products",
+  "languages": [
+   "en"
+  ],
+  "shippingToSpain": null,
+  "notes": "Advertises worldwide shipping; FAQ says post-Brexit EU customers pay import/customs fees (DDU). EU rate not published. Collection mixes sealed with promos/online codes/empty ETBs; filter by title.",
+  "enabled": true
+ },
+ {
+  "id": "magic-madhouse",
+  "name": "Magic Madhouse",
+  "url": "https://magicmadhouse.co.uk",
+  "country": "GB",
+  "currency": "GBP",
+  "platform": "html",
+  "collection": "https://magicmadhouse.co.uk/pokemon/",
+  "languages": [
+   "en",
+   "ja",
+   "ko",
+   "zh"
+  ],
+  "shippingToSpain": "International Economy (untracked) or Express at checkout; customer pays customs/import duties",
+  "notes": "BigCommerce + Klevu: category and search listings (/pokemon/pokemon-sealed-product etc.) are rendered client-side by Klevu JS; the server HTML has no product cards and no JSON-LD (product data only inside a JS context blob). /brands/Pokemon.html IS server-rendered (article.listItem, .listItem-title a, .price--withTax, ?limit=100&page=N) but mixes in the entire singles catalogue with no category filter, so not usable. DISABLED. Ships internationally post-Brexit; Spain not named explicitly.",
+  "enabled": false
+ },
+ {
+  "id": "packratt",
+  "name": "Packratt",
+  "url": "https://www.packratt.co.uk",
+  "country": "GB",
+  "currency": "GBP",
+  "platform": "html",
+  "collection": "https://www.packratt.co.uk/pokemon",
+  "languages": [
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": "UPS quote emailed within 2 working days; DDU (import VAT + UPS brokerage paid on delivery)",
+  "notes": "Next.js storefront, server-rendered cards (a.group[href^=/products/]). /pokemon lists the whole Pokemon catalogue (~293 products, EN/JP/KR/CN, sealed + graded singles + plush) on one page with no pagination; the /pokemon/japanese|korean|chinese pages are subsets of it. Languages reordered so English is the default (JP/KR/CN items say so in the title). Ignore the member price block. Ships to Spain post-Brexit via UPS quote flow (not priced at checkout).",
+  "enabled": true,
+  "selectors": {
+   "item": "a.group[href^=\"/products/\"]",
+   "title": "h3",
+   "price": "span.text-lg.font-bold",
+   "link": "a",
+   "image": "img",
+   "soldOut": ".text-danger"
+  },
+  "maxPages": 1
+ },
+ {
+  "id": "chaos-cards",
+  "name": "Chaos Cards",
+  "url": "https://www.chaoscards.co.uk",
+  "country": "GB",
+  "currency": "GBP",
+  "platform": "html",
+  "collection": "https://www.chaoscards.co.uk/shop/card-games/pokemon/booster-boxes-pokemon",
+  "languages": [
+   "en"
+  ],
+  "shippingToSpain": "Calculated at checkout; standard services DDU (buyer pays duties)",
+  "notes": "Cloudflare returns 403 to the PokePriceBot UA on every endpoint (catalog not machine-readable without a browser). Worldwide shipping page lists Spain. Parent category likely /shop/card-games/pokemon.",
+  "enabled": false
+ },
+ {
+  "id": "pokipair",
+  "name": "PokiPair",
+  "url": "https://www.pokipair.com",
+  "country": "IE",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "148,149,145,173,343,332,167",
+  "languages": [
+   "zh",
+   "ja",
+   "ko",
+   "en"
+  ],
+  "shippingToSpain": "UPS tracked, calculated at checkout; ships from Ireland (no customs within EU)",
+  "notes": "Irish EU business specialising in Chinese/Japanese/Korean sealed. Category ids = booster-boxes, gift-boxes, single-booster-packs, japanese, korean, english, traditional-chinese (Store API accepts comma list). Some test products titled [DISCORD-TEST].",
+  "enabled": true
+ },
+ {
+  "id": "candycards",
+  "name": "CandyCards",
+  "url": "https://candycards.eu",
+  "country": "IE",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": null,
+  "languages": [
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": "EU shipping from Irish warehouse, no customs; rate at checkout",
+  "notes": "WordPress/WooCommerce but every endpoint returns 403 to the bot UA. Ships EU-wide from Ireland (3-5 working days); Spain not named explicitly.",
+  "enabled": false
+ },
+ {
+  "id": "pikamon",
+  "name": "Pikamon",
+  "url": "https://pikamon.eu",
+  "country": "NL",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": "EUR 18.95 (up to 5 kg), EUR 21.50 (5-10 kg); free EU shipping over EUR 500",
+  "notes": "Pokemon-only shop. Per-language handles: pokemon-english, pokemon-japanese, pokemon-korean, pokemon-chinese.",
+  "enabled": true
+ },
+ {
+  "id": "card-binder",
+  "name": "Card Binder",
+  "url": "https://card-binder.com",
+  "country": "NL",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": "EUR 19.95 (Rest of Europe); free shipping only within NL",
+  "notes": "Ships via PostNL; titles tag [Japanese], [S-Chinese], Korean.",
+  "enabled": true
+ },
+ {
+  "id": "oppacards",
+  "name": "OPPA Cards",
+  "url": "https://oppacards.com",
+  "country": "NL",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "46,47,63,48,104,1550,1551",
+  "languages": [
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": "EU rates calculated at checkout (NL EUR 6.95)",
+  "notes": "Formerly tcgpokemon.nl (301 redirect). Category ids = booster-box, booster-pack, collection-box, ETB, tin, japanese, chinese.",
+  "enabled": true
+ },
+ {
+  "id": "pokefamily",
+  "name": "PokeFamily",
+  "url": "https://www.pokefamily.nl",
+  "country": "NL",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "en"
+  ],
+  "shippingToSpain": "Weight/destination based, shown at checkout",
+  "notes": "Ships to all EU countries. Collection also includes some plush; pokemon-booster-box handle for boxes only.",
+  "enabled": true
+ },
+ {
+  "id": "legendary-cards",
+  "name": "Legendary Cards",
+  "url": "https://www.legendarycards.eu",
+  "country": "NL",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.legendarycards.eu/collection/",
+  "languages": [
+   "en",
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "Lightspeed eCom. Plain HTML listing /collection/ (all ~546 products, 24/page, link[rel=next] -> pageN.html). ?format=json also exists but the html adapter cannot parse it. No out-of-stock marker in listing HTML (all show Add to cart), so availability is not read. Tagline Sealed Pokemon products for all of Europe; Spain rate not published. Sub-categories under /pokemon/ (sealed-cases, tins, theme-decks...).",
+  "enabled": true,
+  "selectors": {
+   "item": ".products .product",
+   "title": "a.title",
+   "price": ".info .left",
+   "link": "a.title",
+   "image": ".image-wrap img",
+   "next": "link[rel=next]"
+  },
+  "maxPages": 40
+ },
+ {
+  "id": "card-corner",
+  "name": "Card-Corner",
+  "url": "https://www.card-corner.de",
+  "country": "DE",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.card-corner.de/pokemon-karten?af=100",
+  "languages": [
+   "de",
+   "en",
+   "ja",
+   "ko",
+   "zh"
+  ],
+  "shippingToSpain": "EUR 14.99 (other EU countries)",
+  "notes": "JTL-Shop 5. /pokemon-karten?af=100 (100 per page) + ?seite=N (~13 pages, ~1270 items incl. German product the classifier drops). Price from meta[itemprop=price]; signal_image status-0 = not available. Broad multi-language range incl. Korean and Chinese displays.",
+  "enabled": true,
+  "pageParam": "seite",
+  "selectors": {
+   "item": ".product-wrapper[itemtype*=Product]",
+   "title": ".productbox-title a",
+   "price": "meta[itemprop=price]",
+   "priceAttr": "content",
+   "link": ".productbox-title a",
+   "image": ".productbox-images img",
+   "soldOut": ".signal_image.status-0"
+  },
+  "maxPages": 20
+ },
+ {
+  "id": "gate-to-the-games",
+  "name": "Gate to the Games",
+  "url": "https://www.gate-to-the-games.de",
+  "country": "DE",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": null,
+  "languages": [
+   "de",
+   "ja",
+   "zh",
+   "en"
+  ],
+  "shippingToSpain": "EUR 14.90 for parcels over 0.4 kg (EU zone 2); EUR 5.89 up to 0.4 kg",
+  "notes": "JTL-Shop 5. /Pokemon-Karten/ itself is a landing page, so we scrape the sealed sub-categories with ?af=100 (+ ?seite=N): displays, boosters, Sonderboxen, tins, Themendecks, Kartenpacks, Brandneu, Vorverkauf, Japanese boosters/displays, Chinese. status-0 = Momentan nicht verfuegbar. Most items are German (dropped by classifier).",
+  "enabled": true,
+  "collections": [
+   "https://www.gate-to-the-games.de/Pokemon-Karten/Pokemon-Displays/?af=100",
+   "https://www.gate-to-the-games.de/Pokemon-Karten/Pokemon-Booster/?af=100",
+   "https://www.gate-to-the-games.de/Pokemon-Karten/Sonderboxen/?af=100",
+   "https://www.gate-to-the-games.de/Pokemon-Karten/Pokemon-Tin-Boxen/?af=100",
+   "https://www.gate-to-the-games.de/Pokemon-Karten/Themendecks/?af=100",
+   "https://www.gate-to-the-games.de/Pokemon-Karten/Kartenpacks/?af=100",
+   "https://www.gate-to-the-games.de/Pokemon-Karten/Pokemonkarten/?af=100",
+   "https://www.gate-to-the-games.de/Pokemon-Karten/Pokemon-Sammelkarten/?af=100",
+   "https://www.gate-to-the-games.de/Pokemon-japanische-Booster-Display-Boxen-guenstig-online-kaufen?af=100",
+   "https://www.gate-to-the-games.de/Chinesische-Pokemon-Artikel?af=100"
+  ],
+  "pageParam": "seite",
+  "selectors": {
+   "item": ".product-wrapper[itemtype*=Product]",
+   "title": ".productbox-title a",
+   "price": ".productbox-price",
+   "link": ".productbox-title a",
+   "image": ".productbox-images img",
+   "soldOut": ".signal_image.status-0"
+  },
+  "maxPages": 10
+ },
+ {
+  "id": "trader-online",
+  "name": "Trader Online",
+  "url": "https://trader-online.de",
+  "country": "DE",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": null,
+  "languages": [
+   "de",
+   "en",
+   "ja",
+   "ko",
+   "zh"
+  ],
+  "shippingToSpain": "EUR 12.99 up to 0.8 kg, EUR 13.99 up to 2 kg, EUR 18.99 up to 5 kg",
+  "notes": "OXID eShop with a JS/POST filter widget: page 2+ of a listing cannot be fetched by GET (?pgNr, /2/, attrfilter all ignored) and sorting is POST-only, so we read page 1 (max 50) of /pokemon/displays-boxen/, each Displays-Boxen sub-category and /pokemon/neuheiten/. Booster-Displays has 2 pages, so its 2nd page is missed. Titles carry the language (deutsch/englisch/japanisch/koreanisch/chinesisch).",
+  "enabled": true,
+  "collections": [
+   "https://trader-online.de/pokemon/displays-boxen/",
+   "https://trader-online.de/Pokemon/Displays-Boxen/Booster-Displays/",
+   "https://trader-online.de/Pokemon/Displays-Boxen/Booster-Packs/",
+   "https://trader-online.de/Pokemon/Displays-Boxen/Themendecks/",
+   "https://trader-online.de/Pokemon/Displays-Boxen/Tin-Boxen/",
+   "https://trader-online.de/Pokemon/Displays-Boxen/Boxen-Specials/",
+   "https://trader-online.de/pokemon/neuheiten/"
+  ],
+  "selectors": {
+   "item": ".product-card",
+   "title": ".card-title",
+   "price": ".grid-price",
+   "link": "a.stretched-link",
+   "image": "img.product-img",
+   "soldOut": ".stockFlag.notOnStock"
+  },
+  "maxPages": 1
+ },
+ {
+  "id": "crispycards",
+  "name": "CrispyCards",
+  "url": "https://crispycards.de",
+  "country": "DE",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "de",
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": "EU rates shown at checkout",
+  "notes": "Ships within the EU incl. Spain (Spain/EUR in market selector). Handle 'pokemon' exists but is empty. Per-language: pokemon-tcg-englisch, pokemon-tcg-japanisch, pokemon-karten-chinesisch, pokemon-display-japanisch.",
+  "enabled": true,
+  "collections": [
+   "pokemon-tcg-englisch",
+   "pokemon-tcg-japanisch",
+   "pokemon-karten-chinesisch",
+   "pokemon-display-japanisch"
+  ]
+ },
+ {
+  "id": "yonko-tcg",
+  "name": "Yonko TCG",
+  "url": "https://yonko-tcg.de",
+  "country": "DE",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "zh",
+   "ja",
+   "de",
+   "en"
+  ],
+  "shippingToSpain": "EUR 15.99; free over EUR 349.99",
+  "notes": "Munich. Strong Simplified-Chinese and Japanese range ([S-CHN]/[JP] title prefixes). Extra handles: pokemon-displays-chinesisch, pokemon-display-japanisch.",
+  "enabled": true,
+  "collections": [
+   "pokemon",
+   "pokemon-displays-chinesisch",
+   "pokemon-display-japanisch"
+  ]
+ },
+ {
+  "id": "fantasy-welt",
+  "name": "FantasyWelt",
+  "url": "https://www.fantasywelt.de",
+  "country": "DE",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.fantasywelt.de/Pokemon-DEEN_1",
+  "languages": [
+   "de",
+   "en"
+  ],
+  "shippingToSpain": "DHL international, rate at checkout",
+  "notes": "JTL-Shop behind Cloudflare: 403 to the bot UA. FAQ says it ships to the EU, UK and Switzerland.",
+  "enabled": false
+ },
+ {
+  "id": "sammelmania",
+  "name": "Sammelmania",
+  "url": "https://sammelmania.at",
+  "country": "AT",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://sammelmania.at/Shop/pokemon-karten",
+  "languages": [
+   "de",
+   "en"
+  ],
+  "shippingToSpain": "Austrian Post/DPD within the EU; rate shown at checkout",
+  "notes": "Shopware 6. /Shop/pokemon-karten lists the whole Pokemon range (~71 items, 24/page, ?p=N). Mostly German product (dropped); only items titled Englisch survive. Ships within the EU (Spain not named explicitly).",
+  "enabled": true,
+  "pageParam": "p",
+  "selectors": {
+   "item": ".product-box",
+   "title": "a.product-name",
+   "price": ".product-price",
+   "link": "a.product-name",
+   "image": ".product-image-wrapper img",
+   "soldOut": ".btn-buy[disabled]"
+  },
+  "maxPages": 10
+ },
+ {
+  "id": "philibert",
+  "name": "Philibert",
+  "url": "https://www.philibertnet.com",
+  "country": "FR",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.philibertnet.com/fr/212-pokemon",
+  "languages": [
+   "fr",
+   "ja",
+   "zh",
+   "ko",
+   "en"
+  ],
+  "shippingToSpain": "EUR 4.95 home / EUR 2.95 relay; free over EUR 90 (DHL Express EUR 12.95)",
+  "notes": "Custom PrestaShop-based theme; /fr/212-pokemon paginates ?p=N (48/page, ~162 items). Stock is filled in by JS (availability not read). The item language (Japonais/Chinois/Coreen/Francais) is a separate tag, not in the title: Korean displays titled like the Japanese ones (e.g. Mega Symphonia M1S) get classified as Japanese; French items fall back to store language fr and are dropped. Big French retailer. Marketplace items have own shipping.",
+  "enabled": true,
+  "pageParam": "p",
+  "selectors": {
+   "item": ".product-card[data-pid]",
+   "title": "a.product-card__title",
+   "price": ".product-card__price",
+   "link": "a.product-card__title",
+   "image": "img.product-card__thumb"
+  },
+  "maxPages": 20
+ },
+ {
+  "id": "ultrajeux",
+  "name": "UltraJeux",
+  "url": "https://www.ultrajeux.com",
+  "country": "FR",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.ultrajeux.com/cat-1-4-cartes-a-collectionner-pokemon.html",
+  "languages": [
+   "fr",
+   "en"
+  ],
+  "shippingToSpain": "Spain selectable as delivery country; rate at checkout",
+  "notes": "Custom platform (ISO-8859-1 pages). Old listing type-468 is now \"Evénements\" (events); Pokémon catalogue is /cat-1-4-cartes-a-collectionner-pokemon.html (343 products, 20/page, next = a[title=\"Page Suivante\"]). DISABLED: the shop only sells French-language Pokémon product (language flag fr.png on every item, French titles), which the classifier drops as \"otro idioma\"; also fetchText decodes the Latin-1 pages as UTF-8 so accents become U+FFFD. Selectors kept and verified (titles/prices/availability parse) in case French support is added.",
+  "enabled": false,
+  "selectors": {
+   "item": ".block_produit",
+   "title": "p.titre a",
+   "price": "span.prix",
+   "link": "p.titre a",
+   "image": "img.produit_scan",
+   "soldOut": ".disponibilite span[style*=red]",
+   "next": "a[title=\"Page Suivante\"]"
+  },
+  "maxPages": 20
+ },
+ {
+  "id": "pikadisplay",
+  "name": "PikaDisplay",
+  "url": "https://pikadisplay.com",
+  "country": "FR",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ko"
+  ],
+  "shippingToSpain": "Weight/destination based at checkout; ships from France",
+  "notes": "Korean-only Pokemon specialist; Espana in country selector. Other sealed handles: booster-pokemon-coreen, coffret-pokemon-coreen-authentique-boutique-officielle-pikadisplay, nouveautes-pokemon-coreen.",
+  "enabled": true,
+  "collections": [
+   "display-pokemon-coreen",
+   "booster-pokemon-coreen",
+   "coffret-pokemon-coreen-authentique-boutique-officielle-pikadisplay"
+  ]
+ },
+ {
+  "id": "vcollect",
+  "name": "VCOLLECT",
+  "url": "https://vcollect.fr",
+  "country": "FR",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "fr",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": "Weight/destination based at checkout; ships from France",
+  "notes": "Caen. Espagne in country selector. Per-language handles: pokemon-japonais, pokemon-chinois, pokemon-francais.",
+  "enabled": true
+ },
+ {
+  "id": "nippon-tcg",
+  "name": "Nippon TCG",
+  "url": "https://www.nippontcg.fr",
+  "country": "FR",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.nippontcg.fr/recherche?controller=search&s=pokemon&resultsPerPage=60",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": null,
+  "notes": "PrestaShop 1.7 (Warehouse theme). Category pages 404 on ANY query string (?page=2 included), so pagination is impossible there; we scrape the search page /recherche?s=pokemon&resultsPerPage=60 (paginates with ?page=N, ~107 items, covers displays + coffrets + Chinese). Price from .product-price[content]; prices come back with Spanish VAT (21%) applied for our requests (e.g. 60.45 vs 59.95 FR). Japanese-import specialist shipping from France; delivery page says no customs for EU orders but only publishes FR rates (free over EUR 200 in FR). Confirm Spain at checkout.",
+  "enabled": true,
+  "pageParam": "page",
+  "selectors": {
+   "item": "article.product-miniature",
+   "title": ".product-title a",
+   "price": ".product-price",
+   "priceAttr": "content",
+   "link": ".product-title a",
+   "soldOut": ".product-unavailable"
+  },
+  "maxPages": 6
+ },
+ {
+  "id": "play-in",
+  "name": "Playin by Magic Bazar",
+  "url": "https://www.play-in.com",
+  "country": "FR",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.play-in.com/fr/categorie/193/booster-et-display-pokemon",
+  "languages": [
+   "fr",
+   "zh",
+   "en"
+  ],
+  "shippingToSpain": "Zone 2 (mainland Spain, islands excluded); rate in zone table",
+  "notes": "Cloudflare returns 403 to the bot UA. Same company as Magic Bazar.",
+  "enabled": false
+ },
+ {
+  "id": "baruzcard",
+  "name": "BaruZcard",
+  "url": "https://www.baruzcard.it",
+  "country": "IT",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "it",
+   "en"
+  ],
+  "shippingToSpain": "Rate at checkout; free standard shipping over EUR 99.90 (may be Italy only)",
+  "notes": "Spagna in Shopify market selector. Mostly Italian-language sealed (ITA).",
+  "enabled": true
+ },
+ {
+  "id": "kartonada",
+  "name": "Kartonada",
+  "url": "https://kartonada.pl",
+  "country": "PL",
+  "currency": "PLN",
+  "platform": "woocommerce",
+  "collection": "16",
+  "languages": [
+   "en",
+   "zh"
+  ],
+  "shippingToSpain": "DPD Classic: PLN 58.99 up to 1 kg, PLN 65.99 1-3 kg, PLN 91.99 3-10 kg (Canaries excluded)",
+  "notes": "Ships to 24 EU countries incl. Spain. Prices in PLN (Store API minor unit 2).",
+  "enabled": true
+ },
+ {
+  "id": "najada",
+  "name": "Najada Games",
+  "url": "https://www.najada.games",
+  "country": "CZ",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.najada.games/en/pokemon",
+  "languages": [
+   "en",
+   "zh",
+   "de",
+   "ja",
+   "ko"
+  ],
+  "shippingToSpain": null,
+  "notes": "Desactivada: el catálogo se carga con JavaScript (necesitaría un navegador). Prague/Brno. Nuxt SPA: listing HTML responds 200 but products load client-side (discover XHR API or use headless). Spain selectable as shipping country; EUR prices.",
+  "enabled": false
+ },
+ {
+  "id": "coolstuffinc",
+  "name": "CoolStuffInc",
+  "url": "https://www.coolstuffinc.com",
+  "country": "US",
+  "currency": "USD",
+  "platform": "html",
+  "collection": null,
+  "languages": [
+   "en"
+  ],
+  "shippingToSpain": "Calculated at checkout; import VAT/duties on delivery",
+  "notes": "Custom platform; listings paginate ?page=N (25/page, resultsperpage ignored). Price/availability from schema.org microdata ([itemprop=price] content, availability OutOfStock). Only the dedicated sealed pages are covered: /page/2617 Box Sets, /page/2619 Tins, /page/7273 Misc Sealed. Booster boxes/ETBs/packs live on per-set pages (e.g. /page/8872 Destined Rivals) and are NOT scraped. Spain is on the official ship-to countries list.",
+  "enabled": true,
+  "collections": [
+   "https://www.coolstuffinc.com/page/2617?resultsperpage=25",
+   "https://www.coolstuffinc.com/page/2619?resultsperpage=25",
+   "https://www.coolstuffinc.com/page/7273?resultsperpage=25"
+  ],
+  "pageParam": "page",
+  "selectors": {
+   "item": ".product-search-row[itemtype*=Product]",
+   "title": "[itemprop=name]",
+   "price": "[itemprop=price]",
+   "priceAttr": "content",
+   "link": "a.productLink",
+   "image": "img.tn",
+   "soldOut": "meta[itemprop=availability][content*=OutOfStock]"
+  },
+  "maxPages": 15
+ },
+ {
+  "id": "collectors-cache",
+  "name": "Collector's Cache",
+  "url": "https://www.collectorscache.com",
+  "country": "US",
+  "currency": "USD",
+  "platform": "html",
+  "collection": null,
+  "languages": [
+   "en",
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": "Weight-based at checkout (USPS/UPS); buyer pays duties/taxes",
+  "notes": "Crystal Commerce. Store is Collector's Cache LLC, Lenexa KS (USA), prices in USD (was mis-set as CA/CAD). Scrapes 7 sealed sub-categories (booster boxes, packs, tins/box sets, blisters, theme decks, Japanese boosters, Japanese starter/gift boxes); 24/page, a.next_page, no page-size param. Tins & Box Sets alone has ~55-80 pages, so a full run is ~200 requests (~3-4 min). Price = grid (most expensive in-stock) variant price; items with badge \"Cannot be sold internationally\" are marked unavailable. First-time international card/PayPal orders capped at USD 300 per 90 days.",
+  "enabled": true,
+  "collections": [
+   "https://www.collectorscache.com/catalog/pokmon_sealed_product-pokemon_booster_boxes/386",
+   "https://www.collectorscache.com/catalog/pokmon_sealed_product-pokemon_booster_packs/1103",
+   "https://www.collectorscache.com/catalog/pokmon_sealed_product-pokemon_tins__box_sets/1113",
+   "https://www.collectorscache.com/catalog/pokmon_sealed_product-pokemon_blister_packs/1093",
+   "https://www.collectorscache.com/catalog/pokmon_sealed_product-pokemon_preconstructed_theme_decks/388",
+   "https://www.collectorscache.com/catalog/japanese__chinese_pokemon_products-japanese_pokemon_boosters/2943",
+   "https://www.collectorscache.com/catalog/japanese__chinese_pokemon_products-japanese_startersdecksgift_boxes/2963"
+  ],
+  "selectors": {
+   "item": "li.product",
+   "title": "h4.name",
+   "price": ".list-variants.grid .price",
+   "link": ".meta a",
+   "image": ".image img",
+   "soldOut": ".list-variants.grid .variant-row.no-stock, .badge.domestic-only",
+   "next": "a.next_page"
+  },
+  "maxPages": 90
+ },
+ {
+  "id": "hobbiesville",
+  "name": "Hobbiesville",
+  "url": "https://www.hobbiesville.com",
+  "country": "CA",
+  "currency": "CAD",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ja",
+   "zh",
+   "ko",
+   "en"
+  ],
+  "shippingToSpain": "Rate at checkout; buyer pays duties/taxes",
+  "notes": "Ottawa/Toronto. Ships worldwide. Handle 'pokemon' is empty; use japanese-pokemon, chinese-pokemon-cards, korean-pokemon.",
+  "enabled": true,
+  "collections": [
+   "japanese-pokemon",
+   "chinese-pokemon-cards",
+   "korean-pokemon"
+  ]
+ },
+ {
+  "id": "cardcosmos",
+  "name": "Cardcosmos",
+  "url": "https://cardcosmos.de",
+  "country": "DE",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ja",
+   "zh",
+   "ko",
+   "de",
+   "en"
+  ],
+  "shippingToSpain": "EUR 8.99 to Spain",
+  "notes": "Handles 'pokemon' and 'buy-pokemon-cards' return 0 products via JSON. Per-language: japanische-pokemon-karten, koreanische-pokemon-karten, chinesische-pokemon-karten-und-boosterboxen-kaufen, pokemon-display-japanisch, pokemon-display-koreanisch. Also sells graded cards.",
+  "enabled": true,
+  "collections": [
+   "japanische-pokemon-karten",
+   "koreanische-pokemon-karten",
+   "chinesische-pokemon-karten-und-boosterboxen-kaufen"
+  ]
+ },
+ {
+  "id": "emerald-card-cave",
+  "name": "Emerald Card Cave",
+  "url": "https://emeraldcardcave.de",
+  "country": "DE",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ja",
+   "de",
+   "en"
+  ],
+  "shippingToSpain": "EUR 15.95 (other EU countries); free over EUR 300",
+  "notes": "Spain explicitly listed. 'pokemon' handle is empty. Other handles: pokemon-display-japanisch, pokemon-box-japanisch, pokemon-tin-boxen-all, pokemon-displays-englisch.",
+  "enabled": true,
+  "collections": [
+   "pokemon-main",
+   "pokemon-display-japanisch",
+   "pokemon-box-japanisch",
+   "pokemon-tin-boxen-all",
+   "pokemon-displays-englisch"
+  ]
+ },
+ {
+  "id": "pokechest",
+  "name": "Pokechest",
+  "url": "https://pokechest.at",
+  "country": "AT",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "de",
+   "en"
+  ],
+  "shippingToSpain": "Calculated at checkout",
+  "notes": "Says it ships to 'almost the entire EU'; Spanien appears in the cart shipping estimator but not in the market selector, so confirm at checkout. Also handle alle-pokemon-artikel.",
+  "enabled": true
+ },
+ {
+  "id": "cartes-pokemon-cpc",
+  "name": "CPC - Cartes Pokemon",
+  "url": "https://cartespokemon.com",
+  "country": "BE",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ja",
+   "zh",
+   "fr"
+  ],
+  "shippingToSpain": "Mondial Relay EUR 6.60 (<=500 g) / 9.50 (<=1 kg) / 10.60 (<=2 kg); bpost home EUR 21.90+; free relay over EUR 300",
+  "notes": "K-MINARI SRL, Uccle (Belgium). EU orders ship from European stock (no customs); non-EU from Japan. Also booster-pokemon handle. 'pokemon' handle is empty.",
+  "enabled": true,
+  "collections": [
+   "display-cartes-pokemon",
+   "booster-pokemon"
+  ]
+ },
+ {
+  "id": "bsa-store",
+  "name": "BSA Store",
+  "url": "https://www.bsastore.it",
+  "country": "IT",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": "pokemon",
+  "languages": [
+   "it",
+   "en",
+   "ja",
+   "zh",
+   "ko"
+  ],
+  "shippingToSpain": "EUR 14.90 (EU rate); free over EUR 250 (may be Italy only)",
+  "notes": "Cantu (CO). 'pokemon' mixes singles and sealed. Sealed per-language handles: pokemon-booster-box-display-ita, pokemon-booster-boxes-eng, pokemon-elite-trainer-box-eng, pokemon-booster-boxes-jap, pokemon-collections-jap, pokemon-booster-box-display-chn, pokemon-booster-boxes-kor (from site nav, not JSON-tested).",
+  "enabled": true
+ },
+ {
+  "id": "nin-nin-game",
+  "name": "Nin-Nin-Game",
+  "url": "https://www.nin-nin-game.com",
+  "country": "JP",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.nin-nin-game.com/en/pokemon-tcg",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "From Japan: FedEx/DHL DDP or DDU (2-5 days), EMS, Japan Post air/surface, Euro-Logistics DDP (1-2 months); cost at checkout",
+  "notes": "PrestaShop 1.6-style theme (ul#product_list li.ajax_block_product); scraped with html selectors, 48/page, ~19 pages via #pagination_next_bottom. Listing titles are truncated to ~100 chars with \"...\" (usually only the publisher tag is cut). \"Soon available\" button = out of stock / not yet orderable. Mixes sealed with binders/playmats/deck cases. Choosing a DDP option avoids Spanish import VAT on delivery; DDU = VAT + handling fee.",
+  "enabled": true,
+  "selectors": {
+   "item": "#product_list li.ajax_block_product",
+   "title": "a.product-name",
+   "price": ".price_container > span.price",
+   "link": "a.product-name",
+   "image": "img[id^=bigpic_image]",
+   "soldOut": ".actions .soon",
+   "next": "#pagination_next_bottom a"
+  },
+  "maxPages": 40
+ },
+ {
+  "id": "samurai-sword-tokyo",
+  "name": "Samurai Sword Tokyo",
+  "url": "https://samuraiswordtokyo.com",
+  "country": "JP",
+  "currency": "JPY",
+  "platform": "woocommerce",
+  "collection": "200",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "FedEx International Priority from Tokyo, Europe from ~US$22 per box",
+  "notes": "WC Store API /wp-json/wc/store/v1/products?category=200 ('Pokemon Card Box', ~275 items, X-WP-Total header). Alternatives: 202 'Pokemon SEALED BOOSTER BOX', 201 'Pokemon Booster Box(JP)', 983 damaged boxes, 994 vintage. Prices JPY (minor unit 0). Many 'No Shrink'/'Damaged Box' variants: parse title. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true
+ },
+ {
+  "id": "plaza-japan",
+  "name": "Plaza Japan",
+  "url": "https://www.plazajapan.com",
+  "country": "JP",
+  "currency": "EUR",
+  "platform": "html",
+  "collection": "https://www.plazajapan.com/pokemon/pokemon-card-game-booster-boxes/?setCurrencyId=3",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "From Japan: Japan Post (Economy Air, Registered Air, EMS) or DHL/FedEx/UPS; cost via cart estimate",
+  "notes": "BigCommerce; html selectors (main grid ul.productGrid--maxCol3; the sidebar New Products grid is excluded). ?setCurrencyId=3 forces EUR on every request (1=JPY, 4=GBP, 6=USD); paginates ?page=N, 48/page. Accessories at /pokemon/pokemon-card-game-accessories/. Buyer pays import taxes; EU invoices may add ~EUR3 per product category. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true,
+  "pageParam": "page",
+  "selectors": {
+   "item": "ul.productGrid--maxCol3 > li.product",
+   "title": ".card-title a",
+   "price": ".price--main",
+   "link": ".card-title a",
+   "image": "img.card-image",
+   "soldOut": ".card-figcaption-button--outstock"
+  },
+  "maxPages": 15
+ },
+ {
+  "id": "tcg-republic",
+  "name": "TCG Republic",
+  "url": "https://tcgrepublic.com",
+  "country": "JP",
+  "currency": "USD",
+  "platform": "html",
+  "collection": null,
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Ships worldwide from Japan; JSON-LD advertises free shipping (shippingRate 0)",
+  "notes": "Custom platform. Sub-page 1435 = Pack/Box/Deck, filtered with ?inventory=instock (+ ?inventory=reservation for pre-orders), paginates ?p=N (48/page). Prices are USD, not JPY: CSS adds \"$\" to .price_with_unit_*, product pages show $ and og:price:currency USD (e.g. Inferno X box 224.45). Many items are (USED) and get dropped by the classifier. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true,
+  "collections": [
+   "https://tcgrepublic.com/category/subcategory_page_1435.html?inventory=instock",
+   "https://tcgrepublic.com/category/subcategory_page_1435.html?inventory=reservation"
+  ],
+  "pageParam": "p",
+  "selectors": {
+   "item": "li.product_thumbnail",
+   "title": ".product_thumbnail_caption span",
+   "price": ".price_with_unit_offscreen",
+   "link": "a.thumbnail_card",
+   "image": ".product_thumbnail_image img",
+   "soldOut": ".price_color_thumb.red"
+  },
+  "maxPages": 12
+ },
+ {
+  "id": "japan-figure-store",
+  "name": "Japan Figure Store",
+  "url": "https://japan-figure.com",
+  "country": "JP",
+  "currency": "USD",
+  "platform": "shopify",
+  "collection": "japan-figure-pokemon-trading-cards",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Ships from Japan; ES in Shopify ship-to list (164 countries); cost at checkout",
+  "notes": "250+ products in the collection (sealed boxes, decks, promos); product_type 'Trading Cards Booster Box' helps filter. Also pokemon-single-cards. Has an en-es market path (localized prices). Prices well above Japanese retail. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true
+ },
+ {
+  "id": "solaris-japan",
+  "name": "Solaris Japan",
+  "url": "https://solarisjapan.com",
+  "country": "JP",
+  "currency": "USD",
+  "platform": "shopify",
+  "collection": "pokemon-tcg",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Ships from Japan; ES in Shopify ship-to list (39 countries)",
+  "notes": "Alt collection pokemon-card-game-booster-box (112). Variants 'Brand New'/'Pre Owned'; unavailable variants show price 0.00, so use the available Brand New variant. Shopify store country is US but stock ships from Japan. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true
+ },
+ {
+  "id": "nippon-figures",
+  "name": "Nippon Figures",
+  "url": "https://nipponfigures.com",
+  "country": "JP",
+  "currency": "USD",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Japan Post air or sea; site advertises free shipping over US$150",
+  "notes": "japanese-pokemon-cards (91). Also japanese-pokemon-booster-packs (58), scarlet-violet-booster-boxes, sword-shield-booster-boxes, sun-moon-booster-boxes, japanese-booster-box (88, multi-TCG). Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true,
+  "collections": [
+   "japanese-pokemon-cards",
+   "japanese-pokemon-booster-packs"
+  ]
+ },
+ {
+  "id": "wafuu-japan",
+  "name": "WAFUU Japan",
+  "url": "https://wafuu.com",
+  "country": "JP",
+  "currency": "JPY",
+  "platform": "shopify",
+  "collection": "pokemon-card",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Ships from Japan; ES in Shopify ship-to list (125 countries)",
+  "notes": "~97 products (boxes, decks, promos); JPY integer prices at a reseller premium. Intermittent Cloudflare 429 challenge: throttle requests. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true
+ },
+ {
+  "id": "ichiba-japan",
+  "name": "Ichiba Japan",
+  "url": "https://ichiba-japan.com",
+  "country": "JP",
+  "currency": "JPY",
+  "platform": "shopify",
+  "collection": "japanese-pokemon-cards-tcg",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Rest-of-world Shopify zone covers ES; cost at checkout",
+  "notes": "942 products including sleeves and accessories, so filter by title/product_type. Intermittent Cloudflare 429. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true
+ },
+ {
+  "id": "japantcg",
+  "name": "JapanTCG",
+  "url": "https://japantcg.com",
+  "country": "JP",
+  "currency": "JPY",
+  "platform": "shopify",
+  "collection": "display-pokemon-japonaise",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Rest-of-world Shopify zone covers ES; cost at checkout",
+  "notes": "French-language storefront run from Japan. 119 items, many multi-display 'investor' lots (title starts with quantity). Intermittent 429. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true
+ },
+ {
+  "id": "tcghobby",
+  "name": "TCGHobby",
+  "url": "https://www.tcghobby.com",
+  "country": "TW",
+  "currency": "USD",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "zh",
+   "ja",
+   "en"
+  ],
+  "shippingToSpain": "Ships from Taiwan: FedEx/DHL Express, EMS or tracked economy (Chunghwa Post); cost at checkout; buyer pays duties",
+  "notes": "'pokemon' (2940) includes singles. Sealed alternatives: pokemon-booster-box (417), pokemon-tcg-special-box-collection (116), simplified-chinese-pokemon (196), traditional-chinese-pokemon (132), traditional-chinese-mega-evolution (58), japanese-pokemon (60). Titles prefixed [Simplified Chinese]/[Traditional Chinese]/[Japanese]. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true,
+  "collections": [
+   "pokemon-booster-box",
+   "pokemon-tcg-special-box-collection",
+   "simplified-chinese-pokemon",
+   "traditional-chinese-pokemon",
+   "traditional-chinese-mega-evolution",
+   "japanese-pokemon"
+  ]
+ },
+ {
+  "id": "fuji-card-shop",
+  "name": "Fuji Card Shop",
+  "url": "https://www.fujicardshop.com",
+  "country": "JP",
+  "currency": "EUR",
+  "platform": "woocommerce",
+  "collection": "pokemon",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Ships to 51 countries incl. Europe; Spanish visitors are shown EUR prices; cost at checkout",
+  "notes": "WC Store API answered 200 once (products?per_page=1), then a JS bot challenge (403, ki-cf-botcl) on later calls. 'collection' is a category slug from the menu (also booster-boxes-pokemon, special-set-pokemon); numeric IDs not obtained. Export-only shop in Japan. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": false
+ },
+ {
+  "id": "hobbylink-japan",
+  "name": "HobbyLink Japan (HLJ)",
+  "url": "https://www.hlj.com",
+  "country": "JP",
+  "currency": "JPY",
+  "platform": "html",
+  "collection": "https://www.hlj.com/search/?Word=pokemon+card+game&GenreCode2=Trading+Cards",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Ships worldwide from Japan (Japan Post, EMS, couriers)",
+  "notes": "Search HTML lists item names but prices load via JS/AJAX. Range is mostly Pokémon Card Game 'Gummy' candy boxes with promo cards, few real booster boxes: low value. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": false
+ },
+ {
+  "id": "pokevault",
+  "name": "PokeVault",
+  "url": "https://pokevault.com",
+  "country": "JP",
+  "currency": "USD",
+  "platform": "html",
+  "collection": "https://pokevault.com/japanese-pokemon-cards/japanese-pokemon-booster-box-packs",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Ships from Japan ('delivered straight from Japan'); Spain not explicitly confirmed",
+  "notes": "Listing HTML has product names (current M-series boxes) but no prices (JS-rendered); would need a headless browser. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": false
+ },
+ {
+  "id": "amiami",
+  "name": "AmiAmi",
+  "url": "https://www.amiami.com",
+  "country": "JP",
+  "currency": "JPY",
+  "platform": "html",
+  "collection": "https://www.amiami.com/eng/search/list/?s_keywords=pokemon%20card%20game",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "EMS/DHL/FedEx/airmail from Japan; buyer pays import VAT",
+  "notes": "Cloudflare 403 to curl. SPA backed by api.amiami.com, which needs an X-User-Key header. Pokémon TCG stock is sporadic (pre-orders, decks, boxes). Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": false
+ },
+ {
+  "id": "play-asia",
+  "name": "Play-Asia",
+  "url": "https://www.play-asia.com",
+  "country": "HK",
+  "currency": "USD",
+  "platform": "html",
+  "collection": "https://www.play-asia.com/search/pokemon+card+game",
+  "languages": [
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": "Ships worldwide from Hong Kong (DHL/FedEx/registered mail)",
+  "notes": "Cloudflare 403 to both curl and WebFetch, so the listing could not be read. Carries Japanese and Asian-Chinese Pokémon card products. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": false
+ },
+ {
+  "id": "hikaru-distribution",
+  "name": "Hikaru Distribution",
+  "url": "https://hikarudistribution.com",
+  "country": "FR",
+  "currency": "EUR",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ja",
+   "zh"
+  ],
+  "shippingToSpain": "Ships from France (Mondial Relay, Colissimo/Chronopost); ES in Shopify ship-to list; cost at checkout",
+  "notes": "French importer of Japanese product. display-pokemon (163) is mostly Japanese displays, with some French ones. Also coffret-exclusif-pokemon-japonais (50), coffrets-pokemon-chinois (13), pokemon-chinois, booster-pokemon-japonais (39). 'cartes-pokemon' (3214) includes singles and graded cards. EU seller, so no customs.",
+  "enabled": true,
+  "collections": [
+   "display-pokemon",
+   "coffret-exclusif-pokemon-japonais",
+   "coffrets-pokemon-chinois",
+   "booster-pokemon-japonais"
+  ]
+ },
+ {
+  "id": "danireon",
+  "name": "Danireon Cards & Games",
+  "url": "https://www.danireon.com",
+  "country": "CA",
+  "currency": "CAD",
+  "platform": "shopify",
+  "collection": null,
+  "languages": [
+   "ja",
+   "zh",
+   "ko",
+   "en"
+  ],
+  "shippingToSpain": "ES in Shopify ship-to list (18 countries); rates at checkout",
+  "notes": "Also chinese-pokemon-booster-box (39), chinese-pokemon-cards (71), korean-pokemon-cards (8), japanese-pokemon-booster-packs (62). 'japanese-pokemon-cards' (3280) includes singles. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true,
+  "collections": [
+   "japanese-pokemon-booster-box",
+   "chinese-pokemon-booster-box",
+   "chinese-pokemon-cards",
+   "korean-pokemon-cards",
+   "japanese-pokemon-booster-packs"
+  ]
+ },
+ {
+  "id": "tistaminis",
+  "name": "Tistaminis",
+  "url": "https://tistaminis.com",
+  "country": "CA",
+  "currency": "CAD",
+  "platform": "shopify",
+  "collection": "pokemon-japanese",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "ES in Shopify ship-to list (52 countries); rates at checkout",
+  "notes": "Canadian hobby store with 54 Japanese Pokémon items (boxes, packs, Pokémon Center special boxes). Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true
+ },
+ {
+  "id": "pokemon-plug",
+  "name": "Pokemon Plug",
+  "url": "https://pokemonplug.com",
+  "country": "US",
+  "currency": "USD",
+  "platform": "shopify",
+  "collection": "japanese",
+  "languages": [
+   "ja"
+  ],
+  "shippingToSpain": "Ships worldwide (ES in ship-to list, 50 countries); free shipping only for US orders over $200",
+  "notes": "'japanese' (132) includes loose packs; the store also sells English product. Intermittent Cloudflare 429. Non-EU seller: Spanish import VAT (21%) + carrier clearance fee on arrival unless DDP.",
+  "enabled": true
+ }
+]

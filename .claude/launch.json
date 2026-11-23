@@ -1,0 +1,7 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    { "name": "pokeprice-web", "runtimeExecutable": "node", "runtimeArgs": ["node_modules/vite/bin/vite.js", "--port", "5173", "--strictPort"], "port": 5173 },
+    { "name": "pokeprice-attach", "url": "http://localhost:5173", "port": 5173 }
+  ]
+}

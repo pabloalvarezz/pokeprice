@@ -1,0 +1,70 @@
+# Actualización diaria de PokéPrice: colecciones nuevas, precios de todas las tiendas y publicación de la web.
+# La base de datos (con todo el historial de precios) vive en la rama "datos", que se reescribe cada día
+# sin historial de git: así el repositorio no crece aunque la base pese varios MB.
+name: Actualización diaria
+
+on:
+  schedule:
+    - cron: '15 5 * * *' # 06:15 en Madrid en invierno, 07:15 en verano
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pokeprice-daily
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+
+      - name: Recuperar la base de datos de ayer
+        run: |
+          if git ls-remote --exit-code origin datos > /dev/null; then
+            git fetch --depth 1 origin datos
+            git show FETCH_HEAD:pokeprice.db > data/pokeprice.db
+            echo "Base de datos recuperada ($(du -h data/pokeprice.db | cut -f1))"
+          else
+            echo "Primera ejecución: se crea una base de datos nueva"
+          fi
+
+      - name: Leer tiendas y actualizar precios
+        run: npm run update
+
+      - name: Guardar la base de datos en la rama "datos"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p /tmp/datos
+          cp data/pokeprice.db data/unmatched.txt /tmp/datos/
+          cd /tmp/datos
+          git init -q -b datos
+          git add .
+          git -c user.name="pokeprice-bot" -c user.email="pokeprice-bot@users.noreply.github.com" commit -qm "Datos del $(TZ=Europe/Madrid date +%F)"
+          git push -qf "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" datos
+
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
