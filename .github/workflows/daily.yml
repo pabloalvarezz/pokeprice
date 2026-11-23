@@ -6,7 +6,13 @@ name: Actualización diaria
 on:
   schedule:
     - cron: '15 5 * * *' # 06:15 en Madrid en invierno, 07:15 en verano
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: 'completo = leer tiendas y publicar · publicar = sólo regenerar la web con la base de datos actual'
+        type: choice
+        options: [completo, publicar]
+        default: completo
 
 permissions:
   contents: write
@@ -40,9 +46,15 @@ jobs:
           fi
 
       - name: Leer tiendas y actualizar precios
+        if: ${{ inputs.modo != 'publicar' }}
         run: npm run update
 
+      - name: Sólo publicar (datos ya actualizados desde el Mac)
+        if: ${{ inputs.modo == 'publicar' }}
+        run: npm run export
+
       - name: Guardar la base de datos en la rama "datos"
+        if: ${{ inputs.modo != 'publicar' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

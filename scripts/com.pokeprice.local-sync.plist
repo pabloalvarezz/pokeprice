@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lectura diaria desde el Mac de las tiendas que bloquean a GitHub (07:45, tras la actualización en la nube).
+     Si el Mac está dormido a esa hora, se ejecuta al despertar; si está apagado, ese día se salta.
+     Instalar:    cp scripts/com.pokeprice.local-sync.plist ~/Library/LaunchAgents/ && launchctl load ~/Library/LaunchAgents/com.pokeprice.local-sync.plist
+     Desinstalar: launchctl unload ~/Library/LaunchAgents/com.pokeprice.local-sync.plist && rm ~/Library/LaunchAgents/com.pokeprice.local-sync.plist -->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.pokeprice.local-sync</string>
+  <key>ProgramArguments</key>
+  <array><string>/bin/zsh</string><string>/Volumes/dureza/pokeprice/scripts/local-sync.sh</string></array>
+  <key>StartCalendarInterval</key>
+  <dict><key>Hour</key><integer>7</integer><key>Minute</key><integer>45</integer></dict>
+  <key>StandardOutPath</key><string>/tmp/pokeprice-local-sync.out</string>
+  <key>StandardErrorPath</key><string>/tmp/pokeprice-local-sync.err</string>
+</dict>
+</plist>

@@ -60,7 +60,11 @@ reconocida. Para enseñarle nombres nuevos al clasificador, añádelos a `scrape
 ## Actualización diaria
 
 - **GitHub Actions** (`.github/workflows/daily.yml`): cada día a las 06:15 lee las tiendas, guarda la base de datos en la rama `datos` (reescrita a diario, sin historial de git) y publica la web en GitHub Pages.
-- **En este Mac**: `scripts/daily-local.sh` con la plantilla launchd `scripts/com.pokeprice.daily.plist`.
+- **Complemento desde el Mac** (`scripts/local-sync.sh`, programado con launchd a las 07:45): algunas tiendas bloquean
+  a los servidores de GitHub. El Mac descarga la base de datos de `datos`, lee sólo las tiendas que fallaron en la nube,
+  la vuelve a subir y lanza el workflow en modo `publicar` para regenerar la web. Registro en `data/logs/`.
+  Instalar o quitar: ver la cabecera de `scripts/com.pokeprice.local-sync.plist`.
+- Alternativa sin nube: `scripts/daily-local.sh` hace la actualización completa en el Mac.
 
 ## Aviso
 

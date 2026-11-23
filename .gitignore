@@ -10,3 +10,4 @@ data/logs/
 web/public/data/
 .claude/settings.local.json
 web/public/img/
+data/sync/
