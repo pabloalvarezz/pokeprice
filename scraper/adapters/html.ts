@@ -117,7 +117,16 @@ export const html: Adapter = async (store, log) => {
         body = await fetchText(url);
       } catch (e) {
         if (page > 1 && e instanceof HttpError && e.status === 404) break; // no hay más páginas
-        throw e;
+        if (page === 1 && e instanceof HttpError && e.status === 404) {
+          // algunas tiendas responden 404 un rato cuando reciben muchas visitas: un reintento con calma
+          await new Promise((r) => setTimeout(r, 20_000));
+          body = await fetchText(url);
+        } else if (page > 1 && out.length) {
+          // una página intermedia falla: nos quedamos con lo leído y no damos por desaparecido el resto
+          log(`página ${page} sin respuesta (${(e as Error).message.slice(0, 80)}); lectura parcial`);
+          (out as RawOffer[] & { partial?: boolean }).partial = true;
+          break;
+        } else throw e;
       }
       let items: RawOffer[] = [];
       const $ = cheerio.load(body);

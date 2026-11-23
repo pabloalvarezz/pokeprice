@@ -96,9 +96,10 @@ function saveOffers(db: DatabaseSync, store: StoreConfig, raw: RawOffer[], clf: 
       }
       kept++;
     }
-    // Lo que ya no aparece en la tienda pasa a inactivo
+    // Lo que ya no aparece en la tienda pasa a inactivo (salvo en lecturas parciales)
+    const partial = (raw as RawOffer[] & { partial?: boolean }).partial;
     for (const [id, prev] of existing) {
-      if (!seen.has(id) && prev.active) {
+      if (!partial && !seen.has(id) && prev.active) {
         deactivate.run(now, id);
         hist.run(id, t, prev.price, toEur(fx, prev.price, null), 0);
       }
