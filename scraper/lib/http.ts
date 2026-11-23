@@ -24,10 +24,14 @@ export class HttpError extends Error {
   }
 }
 
-export async function fetchText(
-  url: string,
-  opts: { headers?: Record<string, string>; method?: string; body?: string; retries?: number; timeoutMs?: number } = {},
-): Promise<string> {
+type FetchOpts = { headers?: Record<string, string>; method?: string; body?: string; retries?: number; timeoutMs?: number };
+
+export async function fetchText(url: string, opts: FetchOpts = {}): Promise<string> {
+  return (await fetchPage(url, opts)).text;
+}
+
+/** Como fetchText, pero devuelve también la URL final tras las redirecciones. */
+export async function fetchPage(url: string, opts: FetchOpts = {}): Promise<{ text: string; url: string }> {
   const retries = opts.retries ?? 3;
   let lastErr: unknown;
   for (let attempt = 0; attempt <= retries; attempt++) {
@@ -55,7 +59,7 @@ export async function fetchText(
         continue;
       }
       if (!res.ok) throw new HttpError(res.status, url);
-      return await res.text();
+      return { text: await res.text(), url: res.url || url };
     } catch (err) {
       lastErr = err;
       if (err instanceof HttpError && err.status < 500 && err.status !== 429) throw err;

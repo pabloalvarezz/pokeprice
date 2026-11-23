@@ -120,6 +120,7 @@ export async function scrapeAll(db: DatabaseSync, only: string[] = [], log = con
   const clf = new Classifier(db);
   const targets = stores.filter((s) => (only.length ? only.includes(s.id) : s.enabled !== false));
   const setStatus = db.prepare('UPDATE stores SET last_run = ?, last_status = ?, last_count = ? WHERE id = ?');
+  const setOk = db.prepare('UPDATE stores SET last_ok = ? WHERE id = ?');
 
   const results = await pool(targets, 6, async (store) => {
     const adapter = ADAPTERS[store.platform];
@@ -133,11 +134,12 @@ export async function scrapeAll(db: DatabaseSync, only: string[] = [], log = con
       const raw = await adapter(store, (m) => log(`${tag} ${m}`));
       const res = saveOffers(db, store, raw, clf, fx);
       setStatus.run(nowIso(), 'ok', res.kept, store.id);
+      setOk.run(nowIso(), store.id);
       log(`${tag} ✓ ${res.kept} productos sellados (${res.changes} cambios) en ${((Date.now() - started) / 1000).toFixed(0)} s`);
       return res;
     } catch (e) {
       const msg = (e as Error).message.slice(0, 200);
-      setStatus.run(nowIso(), `error: ${msg}`, 0, store.id);
+      db.prepare('UPDATE stores SET last_run = ?, last_status = ? WHERE id = ?').run(nowIso(), `error: ${msg}`, store.id);
       log(`${tag} ✗ ${msg}`);
       return { id: store.id, status: `error: ${msg}`, read: 0, kept: 0, changes: 0, excluded: {} } as StoreResult;
     }

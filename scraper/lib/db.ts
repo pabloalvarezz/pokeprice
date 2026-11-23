@@ -98,6 +98,11 @@ export function openDb(path = DB_PATH): DatabaseSync {
   const db = new DatabaseSync(path);
   db.exec('PRAGMA journal_mode = DELETE; PRAGMA foreign_keys = ON;'); // un solo fichero: fácil de versionar
   db.exec(SCHEMA);
+  // Migraciones ligeras
+  const cols = (db.prepare('PRAGMA table_info(stores)').all() as { name: string }[]).map((c) => c.name);
+  if (!cols.includes('last_ok')) {
+    db.exec("ALTER TABLE stores ADD COLUMN last_ok TEXT; UPDATE stores SET last_ok = last_run WHERE last_status = 'ok';");
+  }
   return db;
 }
 

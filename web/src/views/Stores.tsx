@@ -76,7 +76,11 @@ export function Stores({ data }: { data: Data }) {
                     )}
                   </span>
                   <span className={ok ? 'status-ok' : s.status ? 'status-err' : ''} title={s.status ?? ''}>
-                    {ok ? `● ${fmtDate(s.lastRun, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}` : s.status ? '● Sin respuesta' : 'Pendiente'}
+                    {ok
+                      ? `● ${fmtDate(s.lastRun, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}`
+                      : s.status
+                        ? `● Sin respuesta${s.lastOk ? ` · última lectura ${fmtDate(s.lastOk, { day: 'numeric', month: 'short' })}` : ''}`
+                        : 'Pendiente'}
                   </span>
                 </div>
                 <div className="tiny muted">{shippingNote(s.country)}</div>

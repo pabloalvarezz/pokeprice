@@ -37,6 +37,7 @@ export function exportData(db: DatabaseSync, log = console.log) {
     enabled: !!s.enabled,
     status: s.last_status,
     lastRun: s.last_run,
+    lastOk: s.last_ok,
     count: s.last_count ?? 0,
   }));
 
@@ -50,7 +51,8 @@ export function exportData(db: DatabaseSync, log = console.log) {
   const offers = (
     db
       .prepare(`SELECT o.* FROM offers o JOIN stores s ON s.id = o.store_id
-                WHERE o.active = 1 AND s.enabled = 1 AND o.language IN (${LANGS.map(() => '?').join(',')}) AND o.price_eur IS NOT NULL`)
+                WHERE o.active = 1 AND s.enabled = 1 AND o.language IN (${LANGS.map(() => '?').join(',')}) AND o.price_eur IS NOT NULL
+                  AND s.last_ok >= datetime('now', '-3 days')`) // tienda sin leerse en 3 días: sus precios ya no son fiables
       .all(...LANGS) as any[]
   ).map((o) => {
     const h = history.get(o.id) ?? [];

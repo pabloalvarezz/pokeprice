@@ -25,6 +25,7 @@ export type Store = {
   enabled: boolean;
   status: string | null;
   lastRun: string | null;
+  lastOk: string | null;
   count: number;
 };
 
