@@ -10,7 +10,7 @@ export const EXTRA_ALIASES: Record<string, string[]> = {
   'intl:white-flare': ['llama blanca', 'llamarada blanca'],
   'intl:phantasmal-flames': ['llamas fantasmales', 'fuegos fantasmales'],
   'intl:ascended-heroes': ['heroes ascendentes', 'heroes ascendidos', 'ascenso heroico'],
-  'intl:mega-evolution': ['mega evolucion', 'mega evolution', 'megaevolutions', 'mega evolutions', 'megaevoluciones'],
+  'intl:mega-evolution': ['mega evolucion', 'mega evolution', 'megaevolutions', 'mega evolutions', 'megaevoluciones', 'mega evoluciones'],
   'intl:journey-together': ['aventuras compartidas', 'juntos de aventuras', 'journing together'],
   'intl:shrouded-fable': ['fabula sombria', 'fabulas sombrias'],
   'intl:paldean-fates': ['destinos de paldea', 'paldean fate'],

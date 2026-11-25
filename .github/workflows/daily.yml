@@ -2,10 +2,13 @@
 # La base de datos (con todo el historial de precios) vive en la rama "datos", que se reescribe cada día
 # sin historial de git: así el repositorio no crece aunque la base pese varios MB.
 name: Actualización diaria
+run-name: ${{ inputs.modo == 'publicar' && 'Publicar web (datos leídos desde el Mac)' || 'Actualización diaria' }}
 
 on:
   schedule:
-    - cron: '15 5 * * *' # 06:15 en Madrid en invierno, 07:15 en verano
+    # 06:15 en Madrid en invierno, 07:15 en verano. GitHub a veces la retrasa muchas horas: el Mac la lanza
+    # él mismo por la mañana si aún no ha empezado, y entonces la programada no repite el trabajo.
+    - cron: '15 5 * * *'
   workflow_dispatch:
     inputs:
       modo:
@@ -24,7 +27,28 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # La tarea programada no hace nada si hoy ya se actualizó (lanzada desde el Mac o a mano)
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      skip: ${{ steps.hoy.outputs.skip }}
+    steps:
+      - id: hoy
+        run: |
+          skip=false
+          if [ "${{ github.event_name }}" = "schedule" ]; then
+            hoy=$(TZ=Europe/Madrid date +%F)
+            msg=$(git ls-remote --exit-code "https://github.com/${GITHUB_REPOSITORY}.git" datos > /dev/null && \
+              git init -q /tmp/r && git -C /tmp/r fetch -q --depth 1 --filter=blob:none "https://github.com/${GITHUB_REPOSITORY}.git" datos && \
+              git -C /tmp/r log -1 --format=%s FETCH_HEAD || true)
+            echo "Última versión de los datos: $msg"
+            case "$msg" in *"$hoy"*) skip=true; echo "Hoy ya se actualizó: no se repite." ;; esac
+          fi
+          echo "skip=$skip" >> "$GITHUB_OUTPUT"
+
   update:
+    needs: check
+    if: needs.check.outputs.skip != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 120
     steps:

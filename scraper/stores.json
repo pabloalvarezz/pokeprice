@@ -994,8 +994,9 @@
   "url": "https://holoplazatcg.com",
   "country": "ES",
   "currency": "EUR",
-  "platform": "woocommerce",
-  "collection": "20",
+  "platform": "html",
+  "collection": "https://holoplazatcg.com/categoria/pokemon-tcg/",
+  "idAttr": "data-product_id",
   "languages": [
    "es",
    "en",
@@ -1004,7 +1005,7 @@
    "ko"
   ],
   "shippingToSpain": null,
-  "notes": "Store API category 20 'pokemon-tcg' (377) 200 - category also contains some Riftbound items.",
+  "notes": "Desde nov. 2026 la Store API responde 403 a todo el mundo: se lee el listado HTML (mismo id de producto). La categoría incluye algún producto de Riftbound.",
   "enabled": true
  },
  {

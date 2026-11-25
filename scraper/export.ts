@@ -4,6 +4,7 @@ import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { openDb, ROOT, today } from './lib/db.ts';
 import { LANG_LABEL, LANGS, PRODUCT_TYPES } from './classify/taxonomy.ts';
+import { groupKeys } from './group.ts';
 
 const OUT = resolve(ROOT, 'web', 'public', 'data');
 
@@ -71,8 +72,8 @@ export function exportData(db: DatabaseSync, log = console.log) {
   const offers = (
     db
       .prepare(`SELECT o.* FROM offers o JOIN stores s ON s.id = o.store_id
-                WHERE o.active = 1 AND s.enabled = 1 AND o.language IN (${LANGS.map(() => '?').join(',')}) AND o.price_eur IS NOT NULL
-                  AND s.last_ok >= datetime('now', '-3 days')`) // tienda sin leerse en 3 días: sus precios ya no son fiables
+                WHERE o.active = 1 AND s.enabled = 1 AND o.language IN (${LANGS.map(() => '?').join(',')}) AND o.price_eur >= 0.5
+                  AND s.last_ok >= datetime('now', '-3 days')`) // tienda sin leerse en 3 días: sus precios ya no son fiables; 0,01 € = agotado en algunas tiendas
       .all(...LANGS) as any[]
   ).map((o) => {
     const h = history.get(o.id) ?? [];
@@ -107,6 +108,10 @@ export function exportData(db: DatabaseSync, log = console.log) {
       h: h.length > 1 ? h.map(([d, p, a]) => [d, p, a]) : undefined,
     };
   });
+
+  // Clave de producto: une la misma referencia vendida por distintas tiendas con títulos distintos
+  const keys = groupKeys(offers);
+  for (const o of offers as (typeof offers[number] & { k?: string })[]) o.k = keys.get(o.id);
 
   const lastRun = db.prepare("SELECT finished FROM runs WHERE kind IN ('update','scrape') ORDER BY id DESC LIMIT 1").get() as { finished: string } | undefined;
   const catalog = {

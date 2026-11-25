@@ -4,6 +4,7 @@ import { syncCollections } from './sync-collections.ts';
 import { scrapeAll } from './scrape.ts';
 import { exportData } from './export.ts';
 import { hashOfferImages, syncCollectionAssets } from './assets.ts';
+import { reclassifyAll } from './reclassify.ts';
 
 const db = openDb();
 const started = nowIso();
@@ -26,6 +27,8 @@ try {
 } catch (e) {
   log(`Aviso: huellas de imagen no actualizadas (${(e as Error).message})`);
 }
+// Reglas de clasificación al día también para las ofertas de tiendas que hoy no respondieron
+reclassifyAll(db, log);
 const ok = results.filter((r) => r.status === 'ok');
 const stats = {
   collections,

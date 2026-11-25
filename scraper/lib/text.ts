@@ -40,7 +40,8 @@ export function stripHtml(s: string | null | undefined): string {
 export function parsePrice(raw: string | number | null | undefined): number | null {
   if (raw == null) return null;
   if (typeof raw === 'number') return Number.isFinite(raw) ? raw : null;
-  let s = raw.replace(/[^\d.,]/g, '');
+  // "19,95 € IVA incl." → "19,95" (sin el punto de "incl.", que lo convertiría en 1995)
+  let s = raw.replace(/[^\d.,]/g, '').replace(/^[.,]+|[.,]+$/g, '');
   if (!s) return null;
   const lastComma = s.lastIndexOf(',');
   const lastDot = s.lastIndexOf('.');

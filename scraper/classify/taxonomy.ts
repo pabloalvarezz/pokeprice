@@ -55,7 +55,7 @@ export const PRODUCT_TYPES: { id: ProductType; label: string; short: string; mul
 // El orden importa: gana el primer patrón que encaje. Se aplican sobre texto normalizado (norm()).
 export const TYPE_RULES: [ProductType, RegExp][] = [
   ['case', /\b(booster box case|display case|etb case|box case|caja master|master case|sealed case|carton|case of \d+|\d+ ?x ?(displays?|booster boxes|etbs?|elite trainer boxes))\b|カートン|\bcase\b/],
-  ['etb', /\b(elite trainer box|caja de entrenador elite|entrenador elite|etb|top trainer box|coffret dresseur d elite)\b/],
+  ['etb', /\b(elite trainer box|caja de entrenador( de)? elite|entrenador( de)? elite|etb|top trainer box|coffret dresseur d elite)\b|\bcaja (de )?entrenador\b(?! avanzad)/],
   ['booster_bundle', /\b(booster bundle|bundle de sobres|lote de 6 sobres|pack de 6 sobres|6 sobres|6 booster packs|6 packs|bundle)\b/],
   ['build_battle', /\b(build and battle|build battle|construye y combate|caja de presentacion|kit de presentacion|prerelease|pre release)\b/],
   ['premium', /\b(ultra premium|super premium|premium collections?|coleccion premium|premium box|caja premium|premium figure|coleccion especial premium|upc|spc)\b/],
@@ -63,7 +63,7 @@ export const TYPE_RULES: [ProductType, RegExp][] = [
   ['tin', /\b(tins?|mini tins?|latas?|mini latas?|tin box|stacking tin|poke ball tin|pokeball tin)\b|缶/],
   ['blister', /\b(blister|blisters|blister pack|checklane|3 pack|three pack|2 pack|two pack|pack de 3|3 sobres|tres sobres|quad pack|4 pack|cuadruple|triple pack|triple blister)\b/],
   ['deck', /\b(decks?|baraja|barajas|mazos?|theme deck|battle deck|starter deck|start deck|starter set|league battle deck|baraja de combate|baraja de liga|world championship deck|trainer kit|my first battle|mi primer combate)\b|デッキ|스타트덱/],
-  ['booster_box', /\b(booster box|booster display|display|caja de sobres|caja (de )?\d+ sobres|caja \d+ boosters|\d+ sobres caja|boite de \d+ boosters|half booster box|enhanced booster box|booster case box|ブースターボックス)\b|\b(expansion|booster|high class|enhanced expansion|enhanced) packs?\b.*\bbox(es)?\b|拡張パック.*box|パック.*box|확장팩.*(박스|box)|부스터 ?박스|(补充包|擴充包|扩充包).*(盒|box)|\bbox(es)?\b.*\b\d{1,2} ?x? (booster )?(packs?|sobres|boosters)\b|\b\d{1,2} (booster )?(packs?|sobres|boosters)\b.*\bbox\b|\bpacks? box\b/],
+  ['booster_box', /\b(booster box|booster display|display|caja de sobres|caja sobres|caja (de )?\d+ sobres|caja (de )?(36|18|24|30)( boosters| con promo)?$|caja (de )?(36|18|24|30) (con|sobres|boosters|ingles|espanol)|caja \d+ boosters|\d+ sobres caja|boite de \d+ boosters|half booster box|enhanced booster box|booster case box|ブースターボックス)\b|\b(expansion|booster|high class|enhanced expansion|enhanced) packs?\b.*\bbox(es)?\b|拡張パック.*box|パック.*box|확장팩.*(박스|box)|부스터 ?박스|(补充包|擴充包|扩充包).*(盒|box)|\bbox(es)?\b.*\b\d{1,2} ?x? (booster )?(packs?|sobres|boosters)\b|\b\d{1,2} (booster )?(packs?|sobres|boosters)\b.*\bbox\b|\bpacks? box\b|\bcaja\b.*\b(18|24|30|36) (sobres|boosters|packs)\b|\b(18|24|30|36) (sobres|boosters)\b.*\bcaja\b/],
   ['collection', /\b(collection|coleccion|colecciones|caja coleccion|box set|coffret|figure collection|pin collection|poster collection|binder collection|knock out collection|premium figure|ex box|v box|vmax box|vstar box|gx box|caja ex|caja v|caja gx|tech sticker|sticker collection|mini portfolio|portfolio set|caja)\b/],
   ['booster_pack', /\b(booster packs?|booster|sobres?|boosters?|packs?|paquete|sleeved booster|art pack)\b|拡張パック|強化拡張パック|ハイクラスパック|パック|확장팩|팩|补充包|擴充包|擴充包/],
 ];

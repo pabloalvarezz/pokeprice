@@ -96,7 +96,16 @@ type Sel = NonNullable<import('./types.ts').StoreConfig['selectors']>;
 
 /** Precio de venta: atributo si se indica; si no, el texto sin el precio tachado (del/s/old-price). */
 function readPrice($: cheerio.CheerioAPI, $el: cheerio.Cheerio<any>, sel: Sel): number | null {
-  const $p = $el.find(sel.price).first();
+  // Los selectores separados por comas son una lista de preferencia (no orden del documento):
+  // ".price ins .amount, .price" no debe quedarse con ".price" entero si hay oferta o un rango "desde – hasta".
+  let $p = $el.find(sel.price).first();
+  for (const s of sel.price.split(',')) {
+    const $c = $el.find(s.trim()).first();
+    if ($c.length) {
+      $p = $c;
+      break;
+    }
+  }
   if (sel.priceAttr) return parsePrice($p.attr(sel.priceAttr) ?? null);
   const clone = $p.clone();
   clone.find('del, s, strike, .old-price, .price-old, .regular-price, .was-price, .compare-at-price').remove();
@@ -139,8 +148,9 @@ export const html: Adapter = async (store, log) => {
           const href = $el.find(sel.link).first().attr('href') ?? $el.attr('href');
           if (!title) return;
           const $img = sel.image ? $el.find(sel.image).first() : $el.find('img').first();
+          const id = store.idAttr ? ($el.attr(store.idAttr) ?? $el.find(`[${store.idAttr}]`).first().attr(store.idAttr)) : undefined;
           items.push({
-            externalId: href ?? title,
+            externalId: id ?? href ?? title,
             title,
             url: absUrl(href, url!) ?? url!,
             image: absUrl(lazyImage($img), url!),

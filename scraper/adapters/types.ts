@@ -34,6 +34,8 @@ export type StoreConfig = {
   /** html: paginar con ?<pageParam>=N en vez de seguir el enlace "siguiente" */
   pageParam?: string;
   maxPages?: number;
+  /** html: atributo del elemento del producto con su id (p. ej. data-product_id), para conservar el id si la tienda cambia de API a HTML */
+  idAttr?: string;
 };
 
 export type RawOffer = {

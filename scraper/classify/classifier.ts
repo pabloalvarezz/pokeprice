@@ -260,17 +260,153 @@ export class Classifier {
     const qty = n.match(/\b(\d{1,3}) ?x\b|\bx ?(\d{1,3})\b|\b(\d{1,3}) (sobres|booster packs|packs|boosters)\b|\blote de (\d{1,3})\b|\b(\d{1,3}) ?ct\b|\bpack de (\d{1,3})\b|\b(\d{1,3}) ?(unds?|uds|unidades|pcs|stuck)\b/);
     const q = qty ? Number(qty[1] ?? qty[2] ?? qty[3] ?? qty[5] ?? qty[6] ?? qty[7] ?? qty[8]) : 1;
     if (type === 'booster_pack' && q > 1) parts.push(`x${q}`);
-    if (type === 'booster_box' && /\bhalf|media|18 (sobres|packs|boosters)\b/.test(n)) parts.push('half');
+    if (type === 'booster_box' && /\bhalf|media|18 (sobres|packs|boosters)\b|\bcaja (de )?18\b/.test(n)) parts.push('half');
     if (type === 'booster_box' && /\benhanced\b/.test(n)) parts.push('enhanced');
     if (type === 'booster_box' && /\b(no shrink|without shrink|no shrinkwrap|sin film|sin precinto|ohne folie|sans film|unshrink|unshrinked)\b/.test(n)) parts.push('noshrink');
     if (type === 'booster_box' && /\b(bulk|loose|sueltos|sueltas|lote de)\b/.test(n)) parts.push('bulk');
     const multi = PRODUCT_TYPES.find((p) => p.id === type)?.multi;
-    if (multi) {
-      const words = ` ${n} `;
-      const mons = this.pokemon.filter((p) => words.includes(` ${p} `));
-      const mech = (n.match(/\b(ex|gx|vmax|vstar|v|mega|tag team)\b/g) ?? []).filter((v, i, a) => a.indexOf(v) === i);
-      if (mons.length) parts.push(...mons.sort(), ...mech.sort());
-    }
+    if (multi) parts.push(...this.identity(n, type));
     return parts.join('+');
   }
+
+  /**
+   * Huella de un producto de gama con muchas referencias (colecciones, latas, barajas, blísteres…):
+   * lo que lo distingue de los demás de su gama, escrito igual sea cual sea el idioma o el estilo de la tienda.
+   * "Baraja Combate de Liga de Mega-Lucario ex" y "Mega Lucario ex League Battle Deck" → lucario+ex+mega+league.
+   */
+  identity(n: string, type: ProductType): string[] {
+    const words = ` ${n} `;
+    const out = new Set<string>();
+    const mons = this.pokemon.filter((p) => words.includes(` ${p} `));
+    // "mr mime" ya incluye "mime"… nos quedamos con el nombre más largo
+    const monsUniq = mons.filter((m) => !mons.some((o) => o !== m && o.includes(m) && ` ${o} `.includes(` ${m} `)));
+    for (const m of monsUniq) out.add(m);
+    if (monsUniq.length) for (const m of n.match(/\b(ex|gx|vmax|vstar|v union|v|mega|tag team|break|prism)\b/g) ?? []) out.add(m === 'v union' ? 'vunion' : m.replace(' ', ''));
+    // Las megaevoluciones son siempre "ex": muchas tiendas no lo escriben ("Mega Charizard Y Tin")
+    if (out.has('mega')) out.delete('ex');
+    // Formas X / Y de las megaevoluciones (Mega Charizard X ex ≠ Mega Charizard Y ex)
+    for (const m of n.matchAll(/\b(charizard|mewtwo)(?: ex)? (x|y)\b(?! (?:mega|[a-z]{4,} ex)\b)/g)) out.add(`f${m[2]}`);
+    if (/\b(charizard|mewtwo)(?: ex)? x (?:and|y|e|&) y\b/.test(n)) {
+      out.add('fx');
+      out.add('fy');
+    }
+    for (const [tag, re] of TRAINERS) if (re.test(n)) out.add(tag);
+    for (const [tag, re] of DESCRIPTORS) if (re.test(n)) out.add(tag);
+    // El tipo de energía sólo distingue barajas iniciales sin Pokémon en el nombre y latas apilables;
+    // en lo demás suele ser parte del nombre de la expansión ("Oscuridad Absoluta", "Darkness Ablaze")
+    if (!((type === 'deck' && !monsUniq.length) || out.has('stacking'))) for (const t of ENERGY) out.delete(t);
+    const ball = n.match(/\b(great|ultra|master|premier|love|dusk|quick|heal|timer|luxury|net|dive|repeat|nest|beast|friend|moon|level|lure|heavy|fast|safari|sport|dream|cherish|super|honor)( ?ball)\b/);
+    if (ball && /\b(poke ?ball|pokeball|tin|lata)\b/.test(n)) out.add(`${ball[1]}ball`);
+    const series = n.match(/\b(?:series|serie|vol|volume|volumen|wave|oleada)\s?(\d{1,2})\b/);
+    if (series) out.add(`s${series[1]}`);
+    // Colecciones mensuales ("January Special Collection" = "Colección especial enero")
+    const MONTHS = ['enero|january', 'febrero|february', 'marzo|march', 'abril|april', 'mayo|may', 'junio|june', 'julio|july', 'agosto|august', 'septiembre|setiembre|september', 'octubre|october', 'noviembre|november', 'diciembre|december'];
+    const month = MONTHS.findIndex((m) => new RegExp(`\\b(${m})\\b`).test(n));
+    if (month >= 0 && (type === 'collection' || type === 'tin' || type === 'blister' || type === 'deck' || type === 'premium')) out.add(`m${String(month + 1).padStart(2, '0')}`);
+    if (out.has('worlds') || out.has('calendar') || out.has('day') || out.has('school')) {
+      const y = n.match(/\b(20\d\d)\b/);
+      if (y) out.add(y[1]);
+    }
+    // Unidades del lote (no el contenido): "Set of 3", "[10PC]", "Display (10 Mini Tins)", "pack de 3 latas"
+    const units = n.match(/\bboth\b|\b(?:set of|set van|lote de) (\d{1,2})\b|\b(\d) set\b|\b(\d) pack\b(?! blister)|\b(\d{1,2}) ?(?:pc|pcs|pz|pezzi|unidades|uds?|units)\b|\b(\d{1,2}) (?:mini )?(?:tins?|latas?|decks|barajas|blisters|collections|colecciones)\b|\bpack de (\d{1,2}) (?:latas|barajas|blisters)\b|\blote de (\d{1,2})\b|\b(\d{1,2}) ?x\b(?! ?(?:sobres|packs|boosters))/);
+    const u = !units ? 1 : units[0] === 'both' ? 2 : Number(units.slice(1).find((x) => x != null) ?? 1);
+    if (u > 1 && !(type === 'blister' && /\bpack\b/.test(units![0]))) out.add(`n${u}`);
+    if (type === 'blister') {
+      // sobres que trae el blíster: 1 (checklane), 2 o 3
+      const p = n.match(/\b(\d) (?:sobres|packs|boosters|booster packs)\b|\b(\d) ?pack\b|\bpack de (\d)\b/);
+      const c = p ? Number(p[1] ?? p[2] ?? p[3]) : /\b(triple|three pack|3pack|tres sobres)\b/.test(n) ? 3 : /\b(doble|double|two pack|dos sobres)\b/.test(n) ? 2 : /\b(checklane|individual|1 sobre|single pack|un sobre)\b/.test(n) ? 1 : 0;
+      if (c >= 1 && c <= 4) out.add(`${c}p`);
+    }
+    if (type === 'case') {
+      // qué trae la caja master
+      const what = /\b(elite trainer|etb|entrenador elite)\b/.test(n) ? 'etb' : /\bbundle\b/.test(n) ? 'bundle' : /\b(display|booster box|caja de sobres|boosters? case)\b/.test(n) ? 'box' : /\b(tins?|latas?)\b/.test(n) ? 'tin' : /\bblister/.test(n) ? 'blister' : /\b(ultra premium|super premium|premium)\b/.test(n) ? 'premium' : /\b(build and battle|build battle)\b/.test(n) ? 'bb' : /\b(collection|coleccion)\b/.test(n) ? 'collection' : /\b(decks?|barajas?)\b/.test(n) ? 'deck' : '';
+      if (what) out.add(`c${what}`);
+      const k = n.match(/\b(\d{1,2}) ?x\b|\bx ?(\d{1,2})\b|\bcase of (\d{1,2})\b|\b(\d{1,2}) (?:displays?|booster boxes|etbs?|elite trainer boxes|bundles|cajas)\b/);
+      if (k) out.add(`n${k[1] ?? k[2] ?? k[3] ?? k[4]}`);
+    }
+    return [...out].sort();
+  }
 }
+
+// Entrenadores que dan nombre a productos (con su nombre en español cuando es distinto)
+const TRAINERS: [string, RegExp][] = [
+  ['cynthia', /\b(cynthia|cintia)s?\b/],
+  ['steven', /\b(steven|maximo)s?\b/],
+  ['marnie', /\b(marnie|roxy)s?\b/],
+  ['lillie', /\blillies?\b/],
+  ['erika', /\berikas?\b/],
+  ['misty', /\bmistys?\b/],
+  ['brock', /\bbrocks?\b/],
+  ['iono', /\bionos?\b/],
+  ['larry', /\blarrys?\b/],
+  ['arven', /\barvens?\b/],
+  ['nemona', /\bnemonas?\b/],
+  ['penny', /\bpennys?\b/],
+  ['ethan', /\bethans?\b/],
+  ['rocket', /\b(team rocket|equipo rocket)\b/],
+];
+export const TRAINER_TAGS = new Set(TRAINERS.map(([t]) => t));
+
+const ENERGY = ['twater', 'tfire', 'tgrass', 'tlightning', 'tpsychic', 'tfighting', 'tdarkness', 'tmetal'];
+
+// Rasgos que distinguen productos de una misma gama (forma canónica, sea cual sea el idioma)
+const DESCRIPTORS: [string, RegExp][] = [
+  ['mini', /\bmini\b/],
+  ['poster', /\bposter\b/],
+  ['binder', /\b(binder|carpeta|archivador)\b/],
+  ['pin', /\b(pins?|chapas?|badges?)\b/],
+  ['figure', /\b(figures?|figuras?|figurine)\b/],
+  ['sticker', /\b(stickers?|pegatinas?)\b/],
+  ['coin', /\b(coins?|monedas?)\b/],
+  ['playmat', /\b(playmat|tapete)\b/],
+  ['pouch', /\b(pouch|estuche|rinonera)\b/],
+  ['portfolio', /\bportfolio\b/],
+  ['illustration', /\b(illustration|ilustracion|ilustraciones)\b/],
+  ['firstpartner', /\b(first partners?|primer companero|primeros companeros|companeros iniciales)\b/],
+  ['surprise', /\b(surprise|sorpresa)\b/],
+  ['upc', /\bultra ?premium\b/],
+  ['spc', /\bsuper ?premium\b/],
+  ['league', /\b(league battle|league deck|combate (de )?liga|liga de combate|baraja de liga)\b/],
+  ['deluxe', /\bdeluxe\b/],
+  ['rival', /\b(combate de rivales|baraja de rivales)\b|\brivals?\b(?! predestinad).*\bdecks?\b/],
+  ['theme', /\b(theme deck|mazo tematico|baraja tematica)\b/],
+  ['trainerkit', /\b(trainer kit|kit de entrenador)\b/],
+  ['worlds', /\b(world championships?|worlds|campeonato mundial|campeonatos mundiales|mundial)\b/],
+  ['academy', /\b(battle academy|academia de combate)\b/],
+  ['calendar', /\b(advent|adviento|holiday calendar|calendario)\b/],
+  ['stacking', /\bstacking\b/],
+  ['chest', /\b(collector chest|cofre)\b/],
+  ['display', /\b(display|expositor)\b/],
+  ['tournament', /\b(tournament|torneo)\b/],
+  ['3d', /\b3d\b/],
+  ['day', /\bpokemon day\b/],
+  ['school', /\b(back to school|vuelta al cole)\b/],
+  ['pencil', /\b(pencil|lapiz|lapices)\b/],
+  ['knockout', /\bknock ?out\b/],
+  ['challenge', /\b(challenge box|caja desafio)\b/],
+  ['vbox', /\b(v box|vmax box|vstar box|caja v)\b/],
+  ['xl', /\bxl\b/],
+  ['blindbox', /\b(blind box|caja ciega)\b/],
+  ['giftbox', /\b(gift box|caja regalo|caja de regalo)\b/],
+  ['keychain', /\b(keychain|llavero)\b/],
+  ['magnet', /\b(magnets?|iman|imanes)\b/],
+  ['frame', /\b(frame|marco)\b/],
+  ['album', /\balbum\b/],
+  ['accessory', /\b(accessory|accesorios)\b/],
+  ['advanced', /\badvanced\b/],
+  ['jumbo', /\bjumbo\b/],
+  ['slim', /\bslim\b/],
+  ['treasures', /\btreasures?\b/],
+  ['evolutionbox', /\b(evolution box|caja evolucion)\b/],
+  // Tipo de energía de barajas iniciales y latas apilables ("Starter Set Water" = "Baraja inicial Agua")
+  ['twater', /\b(water|agua)\b/],
+  ['tfire', /\b(fire|flame|fuego)\b/],
+  ['tgrass', /\b(grass|planta)\b/],
+  ['tlightning', /\b(lightning|electric|rayo|electrico)\b/],
+  ['tpsychic', /\b(psychic|psiquico)\b/],
+  ['tfighting', /\b(fighting|lucha)\b/],
+  ['tdarkness', /\b(darkness|oscuridad)\b/],
+  ['tmetal', /\b(metal|metalico|acero)\b/],
+  ['lumiose', /\b(lumiose|luminose|luminalia)\b/],
+  ['powers', /\b(premium powers|poderes supremos|powers? (tin|collection|box))\b/],
+];

@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Lee desde este Mac las tiendas que bloquean a los servidores de GitHub y republica la web.
-# Lo ejecuta launchd cada día desde una copia del proyecto en ~/Library/Application Support/PokePrice
+# Lo ejecuta launchd varias veces al día (no hace nada si ya está todo hecho) desde una copia del proyecto en ~/Library/Application Support/PokePrice
 # (fuera del disco externo, que macOS no deja leer a las tareas en segundo plano).
 # Registro: ~/Library/Logs/PokePrice/
 export PATH="/usr/local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -13,7 +13,7 @@ cd "$REPO" || exit 1
 
 # Al día con GitHub (código y lista de tiendas); dependencias sólo si cambian
 LOCK_BEFORE=$(shasum package-lock.json | cut -d' ' -f1)
-git pull -q --ff-only origin main || echo "aviso: no se pudo actualizar el código; sigo con la versión local"
+git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 pull -q --ff-only origin main || echo "aviso: no se pudo actualizar el código; sigo con la versión local"
 if [[ ! -d node_modules || "$LOCK_BEFORE" != "$(shasum package-lock.json | cut -d' ' -f1)" ]]; then
   npm ci --silent --no-audit --no-fund
 fi

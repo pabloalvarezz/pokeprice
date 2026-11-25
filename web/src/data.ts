@@ -58,6 +58,8 @@ export type Offer = {
   ih?: string;
   /** foto que no se parece a las demás del grupo (probablemente de otro producto) */
   io?: boolean;
+  /** clave de producto calculada al exportar: une la misma referencia de distintas tiendas */
+  k?: string;
 };
 
 export type Catalog = {
@@ -226,7 +228,7 @@ export function buildGroups(offers: Offer[], colById: Map<string, Collection>, t
   const map = new Map<string, Offer[]>();
   for (const o of offers) {
     const loose = !o.col || (MULTI.has(o.ty) && !o.v);
-    const key = loose ? `offer:${o.id}` : `${o.col}|${o.ty}|${o.l}|${o.v ?? ''}`;
+    const key = o.k ?? (loose ? `offer:${o.id}` : `${o.col}|${o.ty}|${o.l}|${o.v ?? ''}`);
     const arr = map.get(key);
     if (arr) arr.push(o);
     else map.set(key, [o]);
@@ -242,9 +244,14 @@ export function buildGroups(offers: Offer[], colById: Map<string, Collection>, t
     const col = best.col ? (colById.get(best.col) ?? null) : null;
     const type = typeLabel.get(best.ty) ?? best.ty;
     const loose = key.startsWith('offer:');
-    const vLabel = variantLabel(best.v ?? '');
-    const title = loose ? cleanTitle(best.t) : [collectionName(col, best.l), vLabel].filter(Boolean).join(' · ');
-    const subtitle = loose ? [type, col ? collectionName(col, best.l) : null].filter(Boolean).join(' · ') : type;
+    // Huella del grupo: la de la clave (puede afinar la de la oferta, p. ej. nº de sobres de un blíster)
+    const parts = key.split('|');
+    const v = !loose && parts.length >= 4 ? parts[3] : (best.v ?? '');
+    // Gamas con muchas referencias (colecciones, latas, barajas…) o sin colección: el título más representativo
+    // de las tiendas; las demás, "Colección · variante"
+    const byTitle = loose || key.startsWith('~|') || MULTI.has(best.ty);
+    const title = byTitle ? representativeTitle(list) : [collectionName(col, best.l), variantLabel(v)].filter(Boolean).join(' · ');
+    const subtitle = byTitle ? [type, col ? collectionName(col, best.l) : null].filter(Boolean).join(' · ') : type;
     let drop: number | null = null;
     let dropPct: number | null = null;
     let changedOn: string | null = null;
@@ -263,13 +270,13 @@ export function buildGroups(offers: Offer[], colById: Map<string, Collection>, t
       col,
       ty: best.ty,
       l: best.l,
-      v: best.v ?? '',
+      v,
       title,
       subtitle,
       offers: list,
       best,
       available: list.some((o) => o.a),
-      image: pickImage(list, best.col && !best.v && (col?.line === 'intl' ? best.l === 'en' : col?.line === 'jp' ? best.l === 'ja' : false) ? refs[`${best.col}|${best.ty}`] : undefined),
+      image: pickImage(list, best.col && !v && (col?.line === 'intl' ? best.l === 'en' : col?.line === 'jp' ? best.l === 'ja' : false) ? refs[`${best.col}|${best.ty}`] : undefined),
       storeCount: new Set(list.map((o) => o.s)).size,
       drop,
       dropPct,
@@ -281,14 +288,51 @@ export function buildGroups(offers: Offer[], colById: Map<string, Collection>, t
   return groups;
 }
 
-/** Quita ruido típico de tienda de los títulos. */
+const LANG_WORD = '(espa[ñn]ol|castellano|spanish|ingl[ée]s|english|eng|esp|en|es|englisch|inglese|japon[ée]s|japanese|jap|jpn?|chino|chinese|coreano|korean|kr)';
+
+/** Quita ruido típico de tienda de los títulos: idioma, "Pokémon TCG", reserva, separadores sueltos. */
 export function cleanTitle(t: string): string {
   return t
-    .replace(/\s*[-–|]\s*(pok[eé]mon\s*)?(tcg|jcc)\b/gi, '')
+    .replace(new RegExp(`\\s*[\\[(]\\s*${LANG_WORD}(\\s*[/&,y-]\\s*${LANG_WORD})*\\s*[\\])]`, 'gi'), '')
+    .replace(new RegExp(`\\s*[—–|-]\\s*${LANG_WORD}\\s*$`, 'i'), '')
+    .replace(new RegExp(`\\s+${LANG_WORD}\\s*$`, 'i'), '')
+    .replace(/\s*\|\s*pok[eé]mon\s*\|\s*/gi, ' ')
+    .replace(/\s*[-–|:]\s*(pok[eé]mon\s*)?(tcg|jcc)\b/gi, '')
     .replace(/^(pok[eé]mon\s*(tcg|jcc|trading card game)?\s*[:\-–]?\s*)/i, '')
+    .replace(/\bpok[eé]mon (tcg|jcc)\b\s*/gi, '')
     .replace(/\s*\((preventa|pre-?order|reserva)[^)]*\)/gi, '')
+    .replace(/\s*\+\s*\d+\s*a[ñn]os\b/gi, '')
+    .replace(/\s+[—–|-]\s*$/, '')
+    .replace(/^[\s:–—|-]+/, '')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/** El título que mejor representa al grupo: el que más palabras comparte con los demás (sin gritos en mayúsculas). */
+export function representativeTitle(list: Offer[]): string {
+  // Sin la variante de la tienda (" — Alomomola & Axew") ni la coletilla tras "|" ("| Mega Evolution", "| POKÉMON | Español")
+  const titles = [...new Set(list.map((o) => cleanTitle(o.t.replace(/\s+—\s+.*$/, '').replace(/\s+\|\s+.*$/, '')) || cleanTitle(o.t)))];
+  if (titles.length === 1) return list.length === 1 ? cleanTitle(list[0].t) : titles[0];
+  const toks = titles.map((t) => new Set(norm(t).split(' ').filter((w) => w.length > 1)));
+  let best = titles[0];
+  let bestScore = -1;
+  titles.forEach((t, i) => {
+    let score = 0;
+    toks.forEach((o, j) => {
+      if (i === j) return;
+      let inter = 0;
+      for (const w of toks[i]) if (o.has(w)) inter++;
+      score += inter / (toks[i].size + o.size - inter || 1);
+    });
+    const letters = t.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ]/g, '');
+    if (letters && letters.replace(/[^A-ZÁÉÍÓÚÑ]/g, '').length / letters.length > 0.6) score *= 0.75;
+    score -= t.length / 2000; // a igualdad, el más corto
+    if (score > bestScore) {
+      bestScore = score;
+      best = t;
+    }
+  });
+  return best;
 }
 
 export async function loadData(): Promise<Data> {

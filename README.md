@@ -57,12 +57,22 @@ Añade un objeto a `scraper/stores.json`:
 Prueba con `npm run scrape mi-tienda` y revisa `data/unmatched.txt`, que lista los títulos sin colección
 reconocida. Para enseñarle nombres nuevos al clasificador, añádelos a `scraper/classify/aliases.ts`.
 
+## Cómo se agrupa un mismo producto de distintas tiendas
+
+Cada oferta se clasifica en colección · gama · idioma y recibe una *huella* (`variant_key`) con lo que la distingue
+dentro de su gama, escrita igual en cualquier idioma: Pokémon, mecánica (ex, V…), entrenador y rasgos como mini,
+póster, figura, liga o nº de sobres (`identity()` en `scraper/classify/classifier.ts`). Al exportar, `scraper/group.ts`
+calcula la clave de producto: une lo que no tiene colección reconocida por su huella o su título limpio, y junta grupos
+a los que sólo les falta un detalle que muchas tiendas omiten ("ex", "Mega", "de liga") si cuestan parecido. Los
+blísteres y mini latas de una expansión se agrupan sin distinguir la ilustración.
+
 ## Actualización diaria
 
-- **GitHub Actions** (`.github/workflows/daily.yml`): cada día a las 06:15 lee las tiendas, guarda la base de datos en la rama `datos` (reescrita a diario, sin historial de git) y publica la web en GitHub Pages.
-- **Complemento desde el Mac** (`scripts/local-sync.sh`, programado con launchd a las 07:45): algunas tiendas bloquean
-  a los servidores de GitHub. El Mac descarga la base de datos de `datos`, lee sólo las tiendas que fallaron en la nube,
-  la vuelve a subir y lanza el workflow en modo `publicar` para regenerar la web. Se instala con
+- **GitHub Actions** (`.github/workflows/daily.yml`): cada día a las 06:15 lee las tiendas, guarda la base de datos en la rama `datos` (reescrita a diario, sin historial de git) y publica la web en GitHub Pages. GitHub retrasa a veces la tarea programada muchas horas; si ese día ya se actualizó, no repite el trabajo.
+- **Complemento desde el Mac** (`scripts/local-sync.sh`, launchd a las 07:45 y un repaso cada 3 h hasta las 22:45):
+  algunas tiendas bloquean a los servidores de GitHub. Si la nube aún no ha hecho la actualización del día, el Mac la
+  lanza y espera; después descarga la base de datos de `datos`, lee sólo las tiendas que fallaron en la nube,
+  la vuelve a subir y lanza el workflow en modo `publicar` para regenerar la web. Si ya está todo hecho, no hace nada. Se instala con
   `scripts/install-local-sync.sh` (copia del proyecto en `~/Library/Application Support/PokePrice`, porque macOS no deja
   a las tareas en segundo plano leer discos externos). Registro en `~/Library/Logs/PokePrice/`. Para quitarlo, ver la
   cabecera de ese script.
