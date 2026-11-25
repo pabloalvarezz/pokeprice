@@ -2770,12 +2770,12 @@
   "country": "JP",
   "currency": "EUR",
   "platform": "html",
-  "collection": "https://www.nin-nin-game.com/en/pokemon-tcg",
+  "collection": "https://www.nin-nin-game.com/es/juego-de-cartas-pokemon",
   "languages": [
    "ja"
   ],
   "shippingToSpain": "From Japan: FedEx/DHL DDP or DDU (2-5 days), EMS, Japan Post air/surface, Euro-Logistics DDP (1-2 months); cost at checkout",
-  "notes": "PrestaShop 1.6-style theme (ul#product_list li.ajax_block_product); scraped with html selectors, 48/page, ~19 pages via #pagination_next_bottom. Listing titles are truncated to ~100 chars with \"...\" (usually only the publisher tag is cut). \"Soon available\" button = out of stock / not yet orderable. Mixes sealed with binders/playmats/deck cases. Choosing a DDP option avoids Spanish import VAT on delivery; DDU = VAT + handling fee.",
+  "notes": "Listado en español: la URL inglesa (/en/pokemon-tcg) redirige a 'página no encontrada' si se pide en español (nov. 2026). PrestaShop 1.6-style theme (ul#product_list li.ajax_block_product); scraped with html selectors, 48/page, ~19 pages via #pagination_next_bottom. Listing titles are truncated to ~100 chars with \"...\" (usually only the publisher tag is cut). \"Soon available\" button = out of stock / not yet orderable. Mixes sealed with binders/playmats/deck cases. Choosing a DDP option avoids Spanish import VAT on delivery; DDU = VAT + handling fee.",
   "enabled": true,
   "selectors": {
    "item": "#product_list li.ajax_block_product",
